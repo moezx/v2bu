@@ -11,6 +11,7 @@ import moment from 'moment'
 const Notice: FC = () => {
   const [userNotices, setUserNotices] = useState<API.User.NoticeItem[]>()
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const [showNotice, setShowNotice] = useState<API.User.NoticeItem>()
   const intl = useIntl()
   useEffect(() => {
     ;(async () => {
@@ -30,8 +31,8 @@ const Notice: FC = () => {
     setIsModalVisible(false)
   }
 
-  const clickHandler = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
+  const clickHandler = (record: API.User.NoticeItem) => {
+    setShowNotice(record)
     showModal()
   }
 
@@ -48,7 +49,10 @@ const Notice: FC = () => {
                   backgroundImage: `url(${noticeItem.img_url})`,
                   backgroundSize: 'cover',
                 }}
-                onClick={clickHandler}
+                onClick={(e:React.MouseEvent)=>{
+                  e.preventDefault()
+                  clickHandler( noticeItem)
+                }}
               >
                 <div className="block-content bg-black-50">
                   <div className="mb-5 mb-sm-7 d-sm-flex justify-content-sm-between align-items-sm-center">
@@ -64,16 +68,16 @@ const Notice: FC = () => {
                   </p>
                 </div>
               </a>
-              <CarouseModal
-                title={noticeItem.title}
-                visible={isModalVisible}
-                onCancel={cancelModalHandler}
-              >
-                {noticeItem.content}
-              </CarouseModal>
             </div>
           ))}
       </Carousel>
+      {showNotice !== undefined && <CarouseModal
+        title={showNotice.title}
+        visible={isModalVisible}
+        onCancel={cancelModalHandler}
+      >
+        {showNotice.content}
+      </CarouseModal>}
     </>
   )
 }
