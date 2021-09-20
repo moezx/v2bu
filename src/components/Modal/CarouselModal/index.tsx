@@ -13,7 +13,7 @@ const CarouseModal: FC<carouseModalProps> = (props) => {
   return (
     <>
       <Modal title={title} footer={null} visible={visible} onCancel={onCancel}>
-        <div dangerouslySetInnerHTML={{ __html: children as string }}></div>
+        <div style={{ whiteSpace: 'pre-wrap' }}>{children}</div>
       </Modal>
     </>
   )
