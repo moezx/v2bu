@@ -49,9 +49,9 @@ const Notice: FC = () => {
                   backgroundImage: `url(${noticeItem.img_url})`,
                   backgroundSize: 'cover',
                 }}
-                onClick={(e:React.MouseEvent)=>{
+                onClick={(e: React.MouseEvent) => {
                   e.preventDefault()
-                  clickHandler( noticeItem)
+                  clickHandler(noticeItem)
                 }}
               >
                 <div className="block-content bg-black-50">
@@ -71,13 +71,15 @@ const Notice: FC = () => {
             </div>
           ))}
       </Carousel>
-      {showNotice !== undefined && <CarouseModal
-        title={showNotice.title}
-        visible={isModalVisible}
-        onCancel={cancelModalHandler}
-      >
-        {showNotice.content}
-      </CarouseModal>}
+      {showNotice !== undefined && (
+        <CarouseModal
+          title={showNotice.title}
+          visible={isModalVisible}
+          onCancel={cancelModalHandler}
+        >
+          {showNotice.content}
+        </CarouseModal>
+      )}
     </>
   )
 }

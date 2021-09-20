@@ -38,19 +38,19 @@ const DashboardPage: React.FC = () => {
     <div className="content content-full">
       <div className="row">
         <div className="col-12 mb-4">
-          <Notice></Notice>
+          <Notice />
         </div>
       </div>
       <div className="row">
         <div className={rigthDivClassName}>
-          <Subscribe></Subscribe>
-          <Event></Event>
+          <Subscribe />
+          <Event />
         </div>
         <div className="col-xl-8 ">
           <KnowLedge
             categories={userCategories}
             knowledges={userKnowledges as API.User.KnowledgesResult}
-          ></KnowLedge>
+          />
         </div>
       </div>
     </div>

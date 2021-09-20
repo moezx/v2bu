@@ -41,40 +41,36 @@ const Event: FC = () => {
   const renderTelegramEvent = () => (
     <>
       <div className="alert alert-danger" role="alert">
-        <p className="mb-0">
-          <Space>
-            {intl.formatMessage({ id: 'dashboard.event.bind_telegram' })}
-            <Link
-              className="alert-link"
-              to=""
-              onClick={(e) => {
-                clickBindTelegramHandler(e)
-              }}
-            >
-              {intl.formatMessage({ id: 'dashboard.event.click_bind' })}
-            </Link>
-          </Space>
-        </p>
+        <Space>
+          {intl.formatMessage({ id: 'dashboard.event.bind_telegram' })}
+          <Link
+            className="alert-link"
+            to=""
+            onClick={(e) => {
+              clickBindTelegramHandler(e)
+            }}
+          >
+            {intl.formatMessage({ id: 'dashboard.event.click_bind' })}
+          </Link>
+        </Space>
       </div>
       <TelegramModal
         subscribeUrl={subState.subscribeUrl as string}
         visiable={telegramModalVisible}
         onCancel={telegreamModalCancelhandle}
-      ></TelegramModal>
+      />
     </>
   )
 
   const renderOrderEvent = () => (
     <>
       <div className="alert alert-danger" role="alert">
-        <p className="mb-0">
-          <Space>
-            {intl.formatMessage({ id: 'dashboard.event.unpaid_orders' })}
-            <Link className="alert-link" to="/order">
-              {intl.formatMessage({ id: 'dashboard.event.pay_now' })}
-            </Link>
-          </Space>
-        </p>
+        <Space>
+          {intl.formatMessage({ id: 'dashboard.event.unpaid_orders' })}
+          <Link className="alert-link" to="/order">
+            {intl.formatMessage({ id: 'dashboard.event.pay_now' })}
+          </Link>
+        </Space>
       </div>
     </>
   )
@@ -82,7 +78,7 @@ const Event: FC = () => {
   const renderTicketEvent = () => (
     <>
       <div className="alert alert-warning" role="alert">
-        <p className="mb-0">
+        <Space>
           {intl.formatMessage(
             { id: 'dashboard.event.processing' },
             { unprocessedTickets: <strong>{unprocessedTickets}</strong> },
@@ -90,7 +86,7 @@ const Event: FC = () => {
           <Link className="alert-link" to="/ticket">
             {intl.formatMessage({ id: 'dashboard.event.view_now' })}
           </Link>
-        </p>
+        </Space>
       </div>
     </>
   )
