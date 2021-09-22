@@ -61,10 +61,15 @@ const Top: FC = () => {
   }
 
   useMount(async () => {
-    await initSubState()
+    initSubState()
   })
 
-  return (subState?.planID as number) > 0 ? render() : renderEmpty()
+  return (
+    <>
+      {subState?.planID === 0 && renderEmpty()}
+      {(subState?.planID as number) > 0 && render()}
+    </>
+  )
 }
 
 export default Top

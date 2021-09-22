@@ -72,7 +72,9 @@ export default (): subModel => {
     const resetDay: string = subscribeResult?.data.reset_day
     const leftDay: string | null =
       subscribeResult?.data.expired_at !== null
-        ? moment(expiredDay).diff(moment(), 'days').toString()
+        ? moment(moment.unix(subscribeResult?.data.expired_at).toISOString())
+            .diff(moment().unix(), 'days')
+            .toString()
         : null
     const planName: string = subscribeResult?.data.plan?.name as string
     const percentBar: string = `${Math.round((usedTrafficNum / transferTotalNum) * 10000) / 100}%`
