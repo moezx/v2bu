@@ -4,11 +4,12 @@ import type { FC } from 'react'
 import { plans } from '@/services'
 import type { IRouteComponentProps } from 'umi'
 import { useModel, useIntl } from 'umi'
+import { currencyFormatter } from '@/default'
 
 const PlanPage: FC<IRouteComponentProps> = (props) => {
   const [userPlans, setUserPlans] = useState<API.User.PlanItem[]>([])
   const { history } = props
-  const { getFistPriceOverview } = useModel('usePlanModel')
+  const { getFistPriceOverview } = useModel('usePlanModel') 
   const intl = useIntl()
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const PlanPage: FC<IRouteComponentProps> = (props) => {
 
     return (
       <>
-        <p className="h1 font-w700 mb-2">¥ {firstPrice.price}</p>
+        <p className="h1 font-w700 mb-2">{currencyFormatter.format(firstPrice.price / 100)}</p>
         <p className="h6 text-muted">{firstPrice.methodName}</p>
       </>
     )
