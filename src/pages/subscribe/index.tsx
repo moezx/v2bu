@@ -13,6 +13,7 @@ const SubscribePage: FC = () => {
   const { initialState } = useModel('@@initialState')
   const renewPlanPath = `/plan/${initialState?.currentUser?.data.plan_id}`
   const [userDataSource, setUserDataSource] = useState<listItem[]>()
+  const [initialized, setInitialized] = useState(false)
   const intl = useIntl()
 
   useEffect(() => {
@@ -24,14 +25,14 @@ const SubscribePage: FC = () => {
       }
       serversResult.data.map((item: API.User.ServerItem) => {
         const data: listItem = {} as listItem
-        data.key = item.id.toString()
+        data.key = `${item.type}-${item.id.toString()}`
         data.name = item.name
         data.rate = (
           <Tag style={{ minWidth: 60 }}>
             <Space>{item.rate}x</Space>
           </Tag>
         )
-        if (item.tags) {
+        if (item.tags instanceof Array) {
           data.tags = item.tags.map((tagItem: any, tagIndex: number) => {
             const tagKey: number = tagIndex
             return (
@@ -55,20 +56,19 @@ const SubscribePage: FC = () => {
       if (dataSource.length > 0) {
         setUserDataSource(dataSource)
       }
+      setInitialized(true)
     })()
   }, [])
 
   const renderRenewInfo = () => (
     <>
       <div className="alert alert-dark" role="alert">
-        <p className="mb-0">
-          <Space>
-            {intl.formatMessage({ id: 'subscribe.renew_info' })}
-            <Link className="alert-link" to={renewPlanPath}>
-              {intl.formatMessage({ id: 'subscribe.renew' })}
-            </Link>
-          </Space>
-        </p>
+        <Space>
+          {intl.formatMessage({ id: 'subscribe.renew_info' })}
+          <Link className="alert-link" to={renewPlanPath}>
+            {intl.formatMessage({ id: 'subscribe.renew' })}
+          </Link>
+        </Space>
       </div>
     </>
   )
@@ -76,11 +76,12 @@ const SubscribePage: FC = () => {
   return (
     <>
       <div className="content content-full">
-        <Top></Top>
+        {initialized && <Top />}
         {userDataSource && (initialState?.currentUser?.data.plan_id as number) > 0 && (
           <List dataSource={userDataSource}></List>
         )}
-        {userDataSource === undefined &&
+        {initialized &&
+          userDataSource === undefined &&
           (initialState?.currentUser?.data.plan_id as number) > 0 &&
           renderRenewInfo()}
       </div>
