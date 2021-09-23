@@ -163,7 +163,7 @@ export default {
   'ticket.column.status.closed': '已关闭',
   'ticket.column.operation.close': '关闭',
   'ticket.column.operation.view_detail': '查看详情',
-  'ticket.detail.en ter_message': '输入内容回复工单...',
+  'ticket.detail.enter_message': '输入内容回复工单...',
   'traffic.day': '今日',
   'traffic.week': '本周',
   'traffic.month': '本月',

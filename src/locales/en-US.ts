@@ -169,7 +169,7 @@ export default {
   'ticket.column.status.closed': 'Closed',
   'ticket.column.operation.close': 'Close',
   'ticket.column.operation.view_detail': 'View',
-  'ticket.detail.en ter_message': 'Please enter to reply to the ticket...',
+  'ticket.detail.enter_message': 'Please enter to reply to the ticket...',
   'traffic.day': 'Today',
   'traffic.week': 'Week',
   'traffic.month': 'Month',
