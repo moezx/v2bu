@@ -115,7 +115,7 @@ const TrafficPage: FC = () => {
                 render={(rate) => {
                   return (
                     <Tag style={{ minWidth: 60 }}>
-                      <Space>${Number(rate).valueOf()}x</Space>
+                      <Space>{Number(rate).valueOf()}x</Space>
                     </Tag>
                   )
                 }}
