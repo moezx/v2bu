@@ -1,3 +1,4 @@
+import "./style.less"
 import type { FC } from 'react'
 import { useEffect } from 'react'
 import MenuItem from './menuItem'
