@@ -40,7 +40,7 @@ const ProfilePage: FC = () => {
 
   return (
     <>
-      <div className="content content-full">
+      {currentUser && <div className="content content-full">
         <Wallet
           onChange={changeHandler}
           balance={currentUser.balance}
@@ -54,7 +54,7 @@ const ProfilePage: FC = () => {
         />
         <Telegram subscribeUrl={subState.subscribeUrl as string} />
         <Reset />
-      </div>
+      </div>}
     </>
   )
 }
