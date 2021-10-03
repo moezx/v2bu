@@ -72,7 +72,7 @@ const List: FC<listProps> = (props) => {
           <Table
             dataSource={dataSource}
             columns={columns}
-            pagination={{ position: ['none' as any, 'none' as any] }}
+            pagination={false}
           />
         </div>
       </div>
