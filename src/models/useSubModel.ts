@@ -73,7 +73,7 @@ export default (): subModel => {
     const leftDay: string | null =
       subscribeResult?.data.expired_at !== null
         ? moment(moment.unix(subscribeResult?.data.expired_at).toISOString())
-            .diff(moment().unix(), 'days')
+            .diff(moment().toISOString(), 'days')
             .toString()
         : null
     const planName: string = subscribeResult?.data.plan?.name as string
