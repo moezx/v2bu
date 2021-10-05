@@ -9,7 +9,7 @@ import { currencyFormatter } from '@/default'
 const PlanPage: FC<IRouteComponentProps> = (props) => {
   const [userPlans, setUserPlans] = useState<API.User.PlanItem[]>([])
   const { history } = props
-  const { getFistPriceOverview } = useModel('usePlanModel') 
+  const { getFistPriceOverview } = useModel('usePlanModel')
   const intl = useIntl()
 
   useEffect(() => {

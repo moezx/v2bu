@@ -40,21 +40,23 @@ const ProfilePage: FC = () => {
 
   return (
     <>
-      {currentUser && <div className="content content-full">
-        <Wallet
-          onChange={changeHandler}
-          balance={currentUser.balance}
-          commissionBalance={currentUser.commission_balance}
-        />
-        <Password onChange={passwordChangeHandler} />
-        <Setting
-          remindExpire={Boolean(currentUser.remind_expire).valueOf()}
-          remindTraffic={Boolean(currentUser.remind_traffic).valueOf()}
-          onChange={changeHandler}
-        />
-        <Telegram subscribeUrl={subState.subscribeUrl as string} />
-        <Reset />
-      </div>}
+      {currentUser && (
+        <div className="content content-full">
+          <Wallet
+            onChange={changeHandler}
+            balance={currentUser.balance}
+            commissionBalance={currentUser.commission_balance}
+          />
+          <Password onChange={passwordChangeHandler} />
+          <Setting
+            remindExpire={Boolean(currentUser.remind_expire).valueOf()}
+            remindTraffic={Boolean(currentUser.remind_traffic).valueOf()}
+            onChange={changeHandler}
+          />
+          <Telegram subscribeUrl={subState.subscribeUrl as string} />
+          <Reset />
+        </div>
+      )}
     </>
   )
 }

@@ -67,7 +67,7 @@ const TicketDetailPage: FC<IRouteComponentProps> = (props) => {
         return
       }
       formRef.current?.reset()
-      message.success(intl.formatMessage({ id: 'common.message.request_success' }))  
+      message.success(intl.formatMessage({ id: 'common.message.request_success' }))
     }
   }
 

@@ -69,11 +69,7 @@ const List: FC<listProps> = (props) => {
           <h3 className="block-title">{intl.formatMessage({ id: 'subscribe.list.title' })}</h3>
         </div>
         <div className="block-content p-0">
-          <Table
-            dataSource={dataSource}
-            columns={columns}
-            pagination={false}
-          />
+          <Table dataSource={dataSource} columns={columns} pagination={false} />
         </div>
       </div>
     </>
