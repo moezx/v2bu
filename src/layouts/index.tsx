@@ -35,9 +35,11 @@ const LayoutPage: FC<IRouteComponentProps> = (props) => {
     {
       'sidebar-o-xs': sideOpen,
       'page-header-dark': headerTheme === 'dark',
-      'page-sidebar-dark': sidebarTheme === 'dark',
+      'sidebar-dark': sidebarTheme === 'dark',
     },
   )
+  
+  console.log(sidebarTheme)
   let themePath: string
   if (isStandAlone) {
     themePath = `./theme/${colorTheme}.css`
