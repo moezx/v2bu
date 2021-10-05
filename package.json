@@ -3,7 +3,9 @@
   "scripts": {
     "start": "cross-env UMI_ENV=DEV umi dev",
     "build": "umi build ",
-    "postbuild": "cpx env.example.js dist && rimraf dist/assets",
+    "build:standalone": "cross-env STANDALONE=1 umi build",
+    "postbuild:standalone": "cpx env.example.js dist && rimraf dist/assets",
+    "postbuild": "rimraf dist/assets",
     "build:analyze": "cross-env ANALYZE=1 umi build",
     "postinstall": "umi g tmp",
     "prettier": "prettier -c --write \"src/**/*\"",

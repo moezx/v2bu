@@ -27,7 +27,6 @@ export const isNoFetchUserPath = (path: string): boolean => {
   return noFetcnUserPaths.includes(path)
 }
 
-export const envFile = 'env.js'
 export const title = window.settings?.title ?? 'v2board'
 export const description = window.settings?.description ?? 'v2board is best'
 export const version = window.settings?.version

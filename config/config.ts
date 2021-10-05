@@ -1,8 +1,9 @@
 import { defineConfig } from 'umi'
 import chainWebpack from './webpack'
-
 const isProduction = process.env.NODE_ENV === 'production'
+const isStandalone =  process.env.STANDALONE !== undefined
 console.log('isProduction:', isProduction)
+console.log('isStandalone:', isStandalone)
 
 export default defineConfig({
   hash: false,
@@ -34,11 +35,22 @@ export default defineConfig({
   chainWebpack: isProduction ? chainWebpack : undefined,
   chunks: isProduction ? ['vendors', 'compoments', 'umi'] : undefined,
   headScripts: isProduction
-    ? [
+    ? isStandalone  
+     
+     ?[
+        {
+          src: '/env.js',
+        },
         {
           content:
             'if(window.settings !== undefined && window.settings.crisp_id !== undefined){window.$crisp=[];window.CRISP_WEBSITE_ID=window.settings.crisp_id;(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();}',
         },
+      ]:
+      [
+        {
+          content:
+            'if(window.settings !== undefined && window.settings.crisp_id !== undefined){window.$crisp=[];window.CRISP_WEBSITE_ID=window.settings.crisp_id;(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();}',
+        }
       ]
     : undefined,
 })
