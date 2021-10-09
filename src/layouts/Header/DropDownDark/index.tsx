@@ -3,7 +3,7 @@ import { Dropdown, Menu } from 'antd'
 import { useDarkreader } from 'react-darkreader'
 
 const DropDownDark: FC = () => {
-  const darkMode = localStorage.getItem('dark-mode') === '1' ? true : false
+  const darkMode = localStorage.getItem('dark-mode') === '1'
   const [isDark, { toggle }] = useDarkreader(darkMode)
 
   const menu = () => (

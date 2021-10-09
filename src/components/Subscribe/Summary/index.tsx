@@ -19,16 +19,21 @@ const Summary: FC<summaryProps> = (props) => {
       <div>
         <h3 className="h4 font-w700 mb-1">{planName}</h3>
         <p className="font-size-sm text-muted">
-          {expiredDay === null || leftDay === null ? (
-            <span>{intl.formatMessage({ id: 'subscribe.summary.not_expired' })}</span>
-          ) : Number(leftDay).valueOf() > 0 ? (
+          {expiredDay === null ||
+            (leftDay === null && (
+              <span>{intl.formatMessage({ id: 'subscribe.summary.not_expired' })}</span>
+            ))}
+
+          {leftDay !== null && Number(leftDay).valueOf() > 0 && (
             <span>
               {intl.formatMessage(
                 { id: 'subscribe.summary.expire_tip' },
                 { expiredDay, leftDay, resetDay },
               )}
             </span>
-          ) : (
+          )}
+
+          {leftDay !== null && Number(leftDay).valueOf() < 0 && (
             <Link
               className="font-w600 text-danger"
               to=""

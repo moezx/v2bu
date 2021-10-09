@@ -25,7 +25,7 @@ import { useTitle, useExternal } from 'ahooks'
 const LayoutPage: FC<IRouteComponentProps> = (props) => {
   const [sideOpen, setSideOpen] = useState(false)
   const { children, location } = props
-  const darkMode = localStorage.getItem('dark-mode') === '1' ? true : false
+  const darkMode = localStorage.getItem('dark-mode') === '1'
   useDarkreader(darkMode)
 
   const containerClassNames = classNames(
