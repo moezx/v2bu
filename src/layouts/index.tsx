@@ -42,7 +42,6 @@ const LayoutPage: FC<IRouteComponentProps> = (props) => {
     },
   )
 
-  console.log(sidebarTheme)
   let themePath: string
   if (isStandAlone) {
     themePath = `./theme/${colorTheme}.css`
