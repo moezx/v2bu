@@ -19,12 +19,15 @@ import zhCN from 'antd/es/locale/zh_CN'
 import enUS from 'antd/es/locale/en_US'
 import { getLocale } from 'umi'
 import { ConfigProvider } from 'antd'
-
+import { useDarkreader } from 'react-darkreader'
 import { useTitle, useExternal } from 'ahooks'
 
 const LayoutPage: FC<IRouteComponentProps> = (props) => {
   const [sideOpen, setSideOpen] = useState(false)
   const { children, location } = props
+  const darkMode = localStorage.getItem('dark-mode') === '1' ? true : false
+  useDarkreader(darkMode)
+
   const containerClassNames = classNames(
     'sidebar-o',
     'side-scroll',
@@ -38,7 +41,7 @@ const LayoutPage: FC<IRouteComponentProps> = (props) => {
       'sidebar-dark': sidebarTheme === 'dark',
     },
   )
-  
+
   console.log(sidebarTheme)
   let themePath: string
   if (isStandAlone) {

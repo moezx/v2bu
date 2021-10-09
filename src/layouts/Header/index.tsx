@@ -1,6 +1,7 @@
 import './style.less'
 import type { FC } from 'react'
 import DropDownUser from './DropDownUser'
+import DropDownDark from './DropDownDark'
 import DropDownLang from '@/components/DropDownLang'
 import { useModel } from 'umi'
 
@@ -33,6 +34,7 @@ const Header: FC<slideOpenProps> = (props) => {
         <div className="v2board-header-title">
           {menuName !== '' ? menuName : menuIndex && menus.getName(menuIndex)}
         </div>
+        <DropDownDark />
         <DropDownLang placement="bottomRight"></DropDownLang>
         <DropDownUser></DropDownUser>
       </div>

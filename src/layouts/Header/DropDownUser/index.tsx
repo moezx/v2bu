@@ -20,7 +20,7 @@ const DropDownUser: FC = () => {
     e.preventDefault()
     await logout()
     setInitialState((s) => ({ ...s, currentUser: undefined }))
-    history.replace(loginPath)
+    window.location.href = loginPath
   }
 
   const menu = () => (
