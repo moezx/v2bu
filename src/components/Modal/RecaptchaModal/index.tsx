@@ -6,16 +6,17 @@ import { useRef, useEffect } from 'react'
 export interface recaptchaModalProps {
   visible: boolean
   sitekey: string
+  type: 'emailCode' | 'submit'
   onCancel: () => void
-  onVerified: (data: string) => void
+  onVerified: (data: string, type: string) => void
 }
 
 const RecaptchaModal: FC<recaptchaModalProps> = (props) => {
-  const { visible, sitekey, onCancel, onVerified } = props
+  const { visible, sitekey, type, onCancel, onVerified } = props
   const reaptchaRef = useRef<Reaptcha>(null)
 
   const verifyHandler = (data: string) => {
-    onVerified(data)
+    onVerified(data, type)
   }
 
   useEffect(() => {

@@ -3,7 +3,8 @@ import { useState, useEffect, useRef } from 'react'
 import { title, description } from '@/default'
 import { commonConfig } from '@/services/guest'
 import EmailInput from '@/components/EmailInput'
-import EmailCodeInput, { emailCodeHandle } from '@/components/EmailCodeInput'
+import EmailCodeInput from '@/components/EmailCodeInput'
+import type { emailCodeHandle } from '@/components/EmailCodeInput'
 import { emailVerify, register } from '@/services'
 import { loginPath, forgetPath, backgroundUrl } from '@/default'
 import { notification } from 'antd'
@@ -11,6 +12,7 @@ import { useLockFn } from 'ahooks'
 import delay from '@umijs/utils/lib/delay/delay'
 import { history, Link, useIntl } from 'umi'
 import RecaptchaModal from '@/components/Modal/RecaptchaModal'
+
 import DropDownLang from '@/components/DropDownLang'
 
 const RegisterPage: FC = () => {
@@ -23,9 +25,9 @@ const RegisterPage: FC = () => {
   const passwordRepeatRef = useRef<HTMLInputElement>(null)
   const inviteCodeRef = useRef<HTMLInputElement>(null)
   const emailCodeInputRef = useRef<emailCodeHandle>(null)
-  const intl = useIntl()
-
   const [recaptchaModalVisible, setRecaptchaModalVisible] = useState(false)
+  const [recaptChaModalType, setRecaptChaModalType] = useState<'emailCode' | 'submit'>('emailCode')
+  const intl = useIntl()
 
   const showRecaptchaModal = () => {
     setRecaptchaModalVisible(true)
@@ -46,10 +48,13 @@ const RegisterPage: FC = () => {
   const recaptchaVerifiedHandler = (data: string) => {
     setGuestRecaptchaData(data)
     setRecaptchaModalVisible(false)
-    emailCodeInputRef.current?.triggerClick()
+    if (recaptChaModalType === 'emailCode') {
+      emailCodeInputRef.current?.triggerClick()
+    }
   }
 
   const emailCodeSendHandler = async () => {
+    setRecaptChaModalType('emailCode')
     if (gusetCommonConfig?.is_recaptcha === 1 && guestRecaptchaData.length === 0) {
       showRecaptchaModal()
       return false
@@ -72,6 +77,7 @@ const RegisterPage: FC = () => {
   }
 
   const submitHandler = useLockFn(async () => {
+    setRecaptChaModalType('submit')
     if (gusetCommonConfig?.is_recaptcha === 1 && guestRecaptchaData.length === 0) {
       showRecaptchaModal()
       return
@@ -252,6 +258,7 @@ const RegisterPage: FC = () => {
         <>
           <RecaptchaModal
             onVerified={recaptchaVerifiedHandler}
+            type={recaptChaModalType}
             sitekey={gusetCommonConfig?.recaptcha_site_key as string}
             visible={recaptchaModalVisible}
             onCancel={cancelRecaptchaModalHandler}
