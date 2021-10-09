@@ -2,7 +2,6 @@ import type { FC } from 'react'
 import { useState } from 'react'
 import { Link, history, useModel, useIntl } from 'umi'
 import { logout } from '@/services'
-import { loginPath } from '@/default'
 import { Dropdown, Menu } from 'antd'
 
 const DropDownUser: FC = () => {
@@ -20,7 +19,7 @@ const DropDownUser: FC = () => {
     e.preventDefault()
     await logout()
     setInitialState((s) => ({ ...s, currentUser: undefined }))
-    window.location.href = loginPath
+    window.location.reload()
   }
 
   const menu = () => (

@@ -84,8 +84,6 @@ const LoginPage: React.FC = () => {
                 <DropDownLang placement="bottomCenter"></DropDownLang>
               </div>
 
-              {/* <div className="dropdown"><button type="button" className="btn btn-dual mr-1 v2board-auth-lang-btn" data-toggle="layout" data-action="side_overlay_toggle"><i className="far fa fa-language" /></button><div className="dropdown-menu dropdown-menu-right p-0 false" aria-labelledby="page-header-user-dropdown"><div className="p-2"><a className="dropdown-item">中文</a><a className="dropdown-item">English</a><a className="dropdown-item">日本語</a><a className="dropdown-item">Tiếng Việt</a></div></div></div> */}
-
               <div className="row no-gutters justify-content-center">
                 <div className="col-sm-8 col-xl-6">
                   <form
