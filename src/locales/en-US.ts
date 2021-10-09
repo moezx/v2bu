@@ -71,6 +71,7 @@ export default {
   'subscribe.oneclick.btn': 'Quick Subscription',
   'subscribe.oneclick.export': `Export to {name}`,
   'subscribe.summary.not_expired': 'The subscription is valid for unlimited time',
+  'subscribe.summary.expired': 'Expired',
   'subscribe.summary.expire_tip': `Will expire on {expiredDay}，{leftDay} days before expiration，after {resetDay} days reset transfer data`,
   'subscribe.summary.stats': `{usedTraffic} Used / Total {transferTotal}`,
   'invite.generated': 'generated',

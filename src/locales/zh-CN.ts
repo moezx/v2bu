@@ -70,6 +70,7 @@ export default {
   'subscribe.oneclick.btn': '一键订阅',
   'subscribe.oneclick.export': `导入到 {name}`,
   'subscribe.summary.not_expired': '该订阅长期有效',
+  'subscribe.summary.expired': '已过期',
   'subscribe.summary.expire_tip': `于 {expiredDay} 到期，距离到期还有 {leftDay} 天， {resetDay}日后重置流量`,
   'subscribe.summary.stats': `已用 {usedTraffic}  / 总计 {transferTotal}`,
   'invite.generated': '已生成',

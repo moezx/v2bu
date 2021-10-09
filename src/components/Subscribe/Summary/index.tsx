@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { useIntl } from 'umi'
+import { useIntl, Link } from 'umi'
 
 export interface summaryProps {
   planName: string
@@ -21,13 +21,23 @@ const Summary: FC<summaryProps> = (props) => {
         <p className="font-size-sm text-muted">
           {expiredDay === null || leftDay === null ? (
             <span>{intl.formatMessage({ id: 'subscribe.summary.not_expired' })}</span>
-          ) : (
+          ) : Number(leftDay).valueOf() > 0 ? (
             <span>
               {intl.formatMessage(
                 { id: 'subscribe.summary.expire_tip' },
                 { expiredDay, leftDay, resetDay },
               )}
             </span>
+          ) : (
+            <Link
+              className="font-w600 text-danger"
+              to=""
+              onClick={(e: React.MouseEvent) => {
+                e.preventDefault()
+              }}
+            >
+              {intl.formatMessage({ id: 'subscribe.summary.expired' })}
+            </Link>
           )}
         </p>
         <div className="mb-0">
