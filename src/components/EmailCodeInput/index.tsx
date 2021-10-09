@@ -1,5 +1,5 @@
-import type { FC } from 'react'
-import { useState, useEffect, useRef } from 'react'
+import type { ForwardRefRenderFunction } from 'react'
+import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 import { useInterval, useDebounceFn } from 'ahooks'
 import classNames from 'classnames/bind'
 import delay from '@umijs/utils/lib/delay/delay'
@@ -11,7 +11,14 @@ export interface emailCodeInputProps {
   btnClassName: string
 }
 
-const EmailCodeInput: FC<emailCodeInputProps> = (props) => {
+export interface emailCodeHandle {
+  triggerClick: () => void
+}
+
+const EmailCodeInput: ForwardRefRenderFunction<emailCodeHandle, emailCodeInputProps> = (
+  props,
+  forwardedRef,
+) => {
   const { onSend, onChange, btnClassName } = props
   const defaultCountDown = 60
   const defaultCountDownDelay = null
@@ -19,6 +26,7 @@ const EmailCodeInput: FC<emailCodeInputProps> = (props) => {
   const [countDown, setCountDown] = useState(defaultCountDown)
   const [countDownDelay, setCountDownDelay] = useState<number | null>(defaultCountDownDelay)
   const inputRef = useRef<HTMLInputElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
   const intl = useIntl()
 
   const btnClassNames = classNames('btn', 'btn-lg', 'btn-block', {
@@ -32,6 +40,12 @@ const EmailCodeInput: FC<emailCodeInputProps> = (props) => {
     countDownDelay,
     { immediate: false },
   )
+
+  useImperativeHandle(forwardedRef, () => ({
+    triggerClick: () => {
+      buttonRef.current?.click()
+    },
+  }))
 
   const sendHandler = () => {
     onSend().then((result: boolean) => {
@@ -80,6 +94,7 @@ const EmailCodeInput: FC<emailCodeInputProps> = (props) => {
             className={btnClassNames}
             onClick={sendHandler}
             disabled={sendDisabled}
+            ref={buttonRef}
           >
             {sendDisabled === false ? intl.formatMessage({ id: 'common.send' }) : countDown}
           </button>
@@ -88,4 +103,4 @@ const EmailCodeInput: FC<emailCodeInputProps> = (props) => {
     </>
   )
 }
-export default EmailCodeInput
+export default forwardRef(EmailCodeInput)
