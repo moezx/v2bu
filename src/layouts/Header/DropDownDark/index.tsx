@@ -22,7 +22,7 @@ const DropDownDark: FC = () => {
       <Dropdown overlay={menu}>
         <button
           type="button"
-          className="btn btn-primary mr-1"
+          className="btn btn-default mr-1"
           onClick={(e: React.MouseEvent) => {
             e.preventDefault()
             toggle()
