@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Link, history, useModel, useIntl } from 'umi'
 import { logout } from '@/services'
 import { Dropdown, Menu } from 'antd'
+import { isStandAlone } from '@/default'
 
 const DropDownUser: FC = () => {
   const [visible, setVisible] = useState(false)
@@ -18,6 +19,9 @@ const DropDownUser: FC = () => {
   ) => {
     e.preventDefault()
     await logout()
+    if (isStandAlone) {
+      localStorage.removeItem('auth_data')
+    }
     setInitialState((s) => ({ ...s, currentUser: undefined }))
     window.location.reload()
   }

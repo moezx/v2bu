@@ -38,7 +38,7 @@ export const headerTheme = window.settings?.theme?.header ?? 'dark'
 export const colorTheme = window.settings?.theme?.color ?? 'default'
 export const apiHost = window.settings?.host ?? ''
 export const apiContentType = 'application/json'
-export const isStandAlone = version === undefined
+export const isStandAlone = process.env.STANDALONE !== undefined
 export const isProduction = process.env.NODE_ENV === 'production'
 
 export const currencyFormatter = new Intl.NumberFormat('zh-CN', {

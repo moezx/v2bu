@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "start": "cross-env UMI_ENV=DEV umi dev",
+    "start:standalone": "cross-env UMI_ENV=DEV STANDALONE=1 umi dev",
     "build": "umi build ",
     "build:standalone": "cross-env STANDALONE=1 umi build",
     "postbuild:standalone": "cpx env.example.js dist && rimraf dist/assets",

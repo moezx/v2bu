@@ -2,7 +2,7 @@ import type { RequestConfig } from 'umi'
 import { history, getIntl, getLocale } from 'umi'
 import { notification } from 'antd'
 import { userInfo } from '@/services'
-import { loginPath, isNoFetchUserPath, notFoundPath, apiHost } from '@/default'
+import { loginPath, isNoFetchUserPath, notFoundPath, apiHost, isStandAlone } from '@/default'
 
 const intl = getIntl()
 /**
@@ -68,47 +68,60 @@ export async function getInitialState(): Promise<{
  504: The gateway timed out. ',
  * @see https://beta-pro.ant.design/docs/request-cn
  */
-export const request: RequestConfig = {
+const errorHandler = (error: any) => {
+  const { response, data } = error
+  const errorMessages: string[] = []
+  console.log(error) // eslint-disable-line no-console
+  if (response.status === 422) {
+    Object.keys(data.errors).forEach((field) => {
+      errorMessages.push(...data.errors[field])
+    })
+  }
+
+  if (response.status === 500) {
+    errorMessages.push(data.message)
+  }
+
+  if (response.status === 403) {
+    history.replace(loginPath)
+    return
+  }
+
+  if (errorMessages.length > 0) {
+    notification.error({
+      description: errorMessages.map((message) => <div key={message}>{message}</div>),
+      message: intl.formatMessage({ id: 'common.message.request_error' }),
+    })
+  }
+
+  if (!response) {
+    notification.error({
+      description: intl.formatMessage({ id: 'common.message.request_network_error' }),
+      message: intl.formatMessage({ id: 'common.message.reqeust_network_error.desc' }),
+    })
+  }
+  // throw error
+}
+
+const normalRequestConfig: RequestConfig = {
   prefix: apiHost,
   charset: 'utf8',
-  credentials: 'include',
   headers: { 'Content-Language': getLocale() },
-
-  errorHandler: (error: any) => {
-    const { response, data } = error
-    const errorMessages: string[] = []
-    console.log(error) // eslint-disable-line no-console
-    if (response.status === 422) {
-      Object.keys(data.errors).forEach((field) => {
-        errorMessages.push(...data.errors[field])
-      })
-    }
-
-    if (response.status === 500) {
-      errorMessages.push(data.message)
-    }
-
-    if (response.status === 403) {
-      history.replace(loginPath)
-      return
-    }
-
-    if (errorMessages.length > 0) {
-      notification.error({
-        description: errorMessages.map((message) => <div key={message}>{message}</div>),
-        message: intl.formatMessage({ id: 'common.message.request_error' }),
-      })
-    }
-
-    if (!response) {
-      notification.error({
-        description: intl.formatMessage({ id: 'common.message.request_network_error' }),
-        message: intl.formatMessage({ id: 'common.message.reqeust_network_error.desc' }),
-      })
-    }
-    // throw error
-  },
+  errorHandler,
 }
+
+const standAloneRequestConfig: RequestConfig = {
+  prefix: apiHost,
+  charset: 'utf8',
+  headers: {
+    'Access-Control-Allow-Origin': apiHost,
+    'Content-Language': getLocale(),
+    Authorization: localStorage.getItem('auth_data') as string,
+  },
+  errorHandler,
+}
+
+export const request: RequestConfig = isStandAlone ? standAloneRequestConfig : normalRequestConfig
 
 export function onRouteChange({ location, matchedRoutes }: { location: any; matchedRoutes: any }) {
   const num = matchedRoutes.length - 1

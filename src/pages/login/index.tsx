@@ -3,7 +3,14 @@ import { login, checkAuth } from '@/services'
 import { history, useModel, Link, useIntl } from 'umi'
 import { useLockFn } from 'ahooks'
 import delay from '@umijs/utils/lib/delay/delay'
-import { title, description, registerPath, forgetPath, backgroundUrl } from '@/default'
+import {
+  title,
+  description,
+  registerPath,
+  forgetPath,
+  backgroundUrl,
+  isStandAlone,
+} from '@/default'
 import DropDownLang from '@/components/DropDownLang'
 
 const LoginPage: React.FC = () => {
@@ -54,8 +61,11 @@ const LoginPage: React.FC = () => {
     const email = emailInputRef.current?.value as string
     const password = passwordInputRef.current?.value as string
 
-    const resp = await login({ email, password })
-    if (resp) {
+    const loginResult = await login({ email, password })
+    if (loginResult) {
+      if (isStandAlone) {
+        localStorage.setItem('auth_data', loginResult.data.auth_data)
+      }
       await fetchUserInfo()
       goto()
     }
