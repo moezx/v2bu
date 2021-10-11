@@ -31,7 +31,7 @@ export const title = window.settings?.title ?? 'v2board'
 export const description = window.settings?.description ?? 'v2board is best'
 export const version = window.settings?.version
   ? window.settings?.version?.split('.').slice(0, 3).join('.')
-  : undefined
+  : process.env.VERSION
 export const backgroundUrl = window.settings?.background_url ?? undefined
 export const sidebarTheme = window.settings?.theme?.sidebar ?? 'light'
 export const headerTheme = window.settings?.theme?.header ?? 'dark'
