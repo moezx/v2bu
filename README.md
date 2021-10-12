@@ -2,4 +2,4 @@
 > 服务端版本请使用 [xflash-panda/v2board](https://github.com/xflash-panda/v2board), 不要使用原版
 
 ## Document
-[Click](https://xflash-panda.gitbook.io/document/v2board-user/install)
+[Click](https://github.com/xflash-panda/v2board-user/wiki/%E5%AE%89%E8%A3%85)
