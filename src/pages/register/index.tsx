@@ -28,7 +28,15 @@ const RegisterPage: FC = () => {
   const [recaptchaModalVisible, setRecaptchaModalVisible] = useState(false)
   const [recaptChaModalType, setRecaptChaModalType] = useState<'emailCode' | 'submit'>('emailCode')
   const intl = useIntl()
+  let defaultInviteCode: string | undefined = undefined
+  if (history.location.query !== undefined) {
+    defaultInviteCode =
+      typeof history.location.query['code'] === 'string'
+        ? history.location.query['code']
+        : undefined
+  }
 
+  // history.location.query: history.location.query['code']
   const showRecaptchaModal = () => {
     setRecaptchaModalVisible(true)
   }
@@ -187,6 +195,8 @@ const RegisterPage: FC = () => {
                           <input
                             ref={inviteCodeRef}
                             className="form-control form-control-lg form-control-alt"
+                            defaultValue={defaultInviteCode}
+                            disabled={defaultInviteCode?.length === 8}
                             placeholder={
                               gusetCommonConfig?.is_invite_force === 1
                                 ? intl.formatMessage({ id: 'register.invite_code' })
