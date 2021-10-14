@@ -21,6 +21,7 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
   const { getFistPriceOverview, getMethodName } = useModel('usePlanModel')
   const { getOwnProperty } = useModel('useCommonModel')
   const { setMenuName } = useModel('useMenuModel')
+  const { subState, initSubState } = useModel('useSubModel')
   const [userPlan, setUserPlan] = useState<API.User.PlanItem>()
   const { method } = location.state ? (location.state as { method: string }) : { method: '' }
   const [userPlanMethod, setUserPlanMethod] = useState('')
@@ -41,14 +42,14 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
   }
 
   useEffect(() => {
+    initSubState()
+  }, [])
+
+  useEffect(() => {
     setMenuName(intl.formatMessage({ id: 'plan.detail.title' }))
     ;(async () => {
       const planResult = await plan({ id })
-      if (
-        planResult === undefined ||
-        planResult.data === undefined ||
-        planResult.data.renew === 0
-      ) {
+      if (planResult.data.show === 0) {
         history.replace(notFoundPath)
         return
       }
@@ -244,25 +245,32 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
 
   return (
     <div className="content content-full">
-      {userPlan !== undefined && userPlan.renew === 1 && (
-        <div className="row" id="cashier">
-          <div className="col-md-8 col-sm-12">
-            {userPlan && renderDetail(userPlan)}
-            <h3 className="font-w300 mt-4 mb-3">
-              {intl.formatMessage({ id: 'plan.detail.cycle' })}
-            </h3>
-            {userPlan && renderCycle(userPlan)}
+      {subState !== undefined &&
+        userPlan !== undefined &&
+        userPlan.show === 1 &&
+        (subState.planID !== userPlan?.id || userPlan?.renew === 1) && (
+          <div className="row" id="cashier">
+            <div className="col-md-8 col-sm-12">
+              {userPlan && renderDetail(userPlan)}
+              <h3 className="font-w300 mt-4 mb-3">
+                {intl.formatMessage({ id: 'plan.detail.cycle' })}
+              </h3>
+              {userPlan && renderCycle(userPlan)}
+            </div>
+            <div className="col-md-4 col-sm-12">
+              {userPlan && (
+                <Coupon planID={userPlan?.id} onCheckSuccess={couponCheckCallbackHandler}></Coupon>
+              )}
+              {userPrice && <Operation {...userPrice}></Operation>}
+            </div>
           </div>
-          <div className="col-md-4 col-sm-12">
-            {userPlan && (
-              <Coupon planID={userPlan?.id} onCheckSuccess={couponCheckCallbackHandler}></Coupon>
-            )}
-            {userPrice && <Operation {...userPrice}></Operation>}
-          </div>
-        </div>
-      )}
+        )}
 
-      {userPlan !== undefined && userPlan.renew === 0 && renderNoRenewal()}
+      {subState !== undefined &&
+        userPlan !== undefined &&
+        subState.planID === userPlan.id &&
+        userPlan.renew === 0 &&
+        renderNoRenewal()}
     </div>
   )
 }

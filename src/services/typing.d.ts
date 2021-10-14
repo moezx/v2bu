@@ -130,7 +130,7 @@ declare namespace API {
       show: number
       sort: number
       renew: number
-      content: 'string'
+      content: string
       month_price: number
       quarter_price: number
       half_year_price: number
@@ -210,7 +210,7 @@ declare namespace API {
       show: number
       sort: number
       renew: number
-      conten: string
+      content: string
       month_price: number
       quarter_price: number
       half_year_price: number
