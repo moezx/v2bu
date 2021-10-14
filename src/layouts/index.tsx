@@ -16,6 +16,7 @@ import Sidebar from './Sidebar'
 import Footer from './Footer'
 import classNames from 'classnames/bind'
 import zhCN from 'antd/es/locale/zh_CN'
+import viVN from 'antd/es/locale/vi_VN'
 import enUS from 'antd/es/locale/en_US'
 import { getLocale } from 'umi'
 import { ConfigProvider } from 'antd'
@@ -65,7 +66,9 @@ const LayoutPage: FC<IRouteComponentProps> = (props) => {
 
   return (
     <>
-      <ConfigProvider locale={getLocale() === 'zh-CN' ? zhCN : enUS}>
+      <ConfigProvider
+        locale={getLocale() === 'zh-CN' ? zhCN : getLocale() === 'en-US' ? enUS : viVN}
+      >
         <div id="page-container" className={containerClassNames}>
           <div
             className="v2board-nav-mask"

@@ -18,7 +18,7 @@ const DropDownLang: FC<DropDownLangProps> = (props) => {
 
   const setLocalHandler = ({ key }: { key: string }) => {
     if (getLocale() !== key) {
-      setLocale(key, false)
+      setLocale(key, true)
     }
     setVisible(false)
   }
@@ -40,6 +40,11 @@ const DropDownLang: FC<DropDownLangProps> = (props) => {
         <Menu.Item key="en-US">
           <Link to="#" style={{ fontSize: '1rem' }}>
             English
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="vi-VN">
+          <Link to="#" style={{ fontSize: '1rem' }}>
+            Tiếng Việt
           </Link>
         </Menu.Item>
       </Menu>
