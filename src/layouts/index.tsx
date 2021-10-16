@@ -9,6 +9,7 @@ import {
   colorTheme,
   isNoLaooutPath,
   isStandAlone,
+  isProduction,
 } from '@/default'
 import { useState } from 'react'
 import Header from './Header'
@@ -44,7 +45,7 @@ const LayoutPage: FC<IRouteComponentProps> = (props) => {
   )
 
   let themePath: string
-  if (isStandAlone) {
+  if (isStandAlone || isProduction === false) {
     themePath = `./theme/${colorTheme}.css`
   } else {
     themePath = `/theme/v2board/assets/theme/${colorTheme}.css`
