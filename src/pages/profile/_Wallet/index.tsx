@@ -72,7 +72,6 @@ const Wallet: FC<walletProps> = (props) => {
                 </p>
                 <p className="display-4 text-black font-w300 mb-2">
                   {currencyFormatter.format((balance + commissionBalance) / 100)}
-                  <span className="font-size-h5 text-muted ml-4">CNY</span>
                 </p>
                 <span className="text-muted" style={{ cursor: 'pointer' }}>
                   <Space>

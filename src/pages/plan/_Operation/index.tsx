@@ -93,7 +93,7 @@ const Operation: FC<operationProps> = (props) => {
         <div className="pt-3" style={{ color: 'rgb(100, 102, 105)' }}>
           {intl.formatMessage({ id: 'plan.detail.operation.amount_to' })}
         </div>
-        <h1 className="text-light mt-3 mb-3">{currencyFormatter.format(totalAmount / 100)} CNY</h1>
+        <h1 className="text-light mt-3 mb-3">{currencyFormatter.format(totalAmount / 100)}</h1>
         <button
           type="button"
           className="btn btn-block btn-primary"

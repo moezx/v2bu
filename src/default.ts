@@ -41,7 +41,7 @@ export const apiContentType = 'application/json'
 export const isStandAlone = process.env.STANDALONE !== undefined
 export const isProduction = process.env.NODE_ENV === 'production'
 
-export const currencyFormatter = new Intl.NumberFormat('zh-CN', {
+export const currencyFormatter = new Intl.NumberFormat(process.env.CURRENCY_LOCALE, {
   style: 'currency',
-  currency: 'CNY',
+  currency: process.env.CURRENCY_UNIT,
 })
