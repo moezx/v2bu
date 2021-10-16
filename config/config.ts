@@ -54,6 +54,6 @@ export default defineConfig({
     : undefined,
   define: {
     'process.env.STANDALONE': process.env.STANDALONE,
-    'process.env.VERSION': '1.1.2',
+    'process.env.VERSION': '1.1.3',
   },
 })

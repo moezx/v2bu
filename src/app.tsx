@@ -72,17 +72,18 @@ const errorHandler = (error: any) => {
   const { response, data } = error
   const errorMessages: string[] = []
   console.log(error) // eslint-disable-line no-console
-  if (response.status === 422) {
+
+  if (response !== null && response.status === 422) {
     Object.keys(data.errors).forEach((field) => {
       errorMessages.push(...data.errors[field])
     })
   }
 
-  if (response.status === 500) {
+  if (response !== null && response.status === 500) {
     errorMessages.push(data.message)
   }
 
-  if (response.status === 403) {
+  if (response !== null && response.status === 403) {
     history.replace(loginPath)
     return
   }
@@ -91,13 +92,6 @@ const errorHandler = (error: any) => {
     notification.error({
       description: errorMessages.map((message) => <div key={message}>{message}</div>),
       message: intl.formatMessage({ id: 'common.message.request_error' }),
-    })
-  }
-
-  if (!response) {
-    notification.error({
-      description: intl.formatMessage({ id: 'common.message.request_network_error' }),
-      message: intl.formatMessage({ id: 'common.message.reqeust_network_error.desc' }),
     })
   }
   // throw error
