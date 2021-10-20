@@ -9,13 +9,7 @@ const Menu: FC = () => {
   const intl = useIntl()
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-
-    const topPath = `/${history.location.pathname.split('/')[1]}`
-    if (topPath === '') {
-      return
-    }
-    const curMenuIndex = menus.getIndex(topPath)
+    const curMenuIndex = menus.getIndex(history.location.pathname)
     if (curMenuIndex === undefined) {
       return
     }
