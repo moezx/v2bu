@@ -88,7 +88,7 @@ const TrafficPage: FC = () => {
                 key="log_at"
                 title={intl.formatMessage({ id: 'traffic.column.log_at' })}
                 render={(logAt) => {
-                  return moment.unix(Number(logAt)).format('YYYY/MM/DD HH:MM')
+                  return moment.unix(Number(logAt)).format('YYYY/MM/DD HH:mm')
                 }}
               />
               <Column

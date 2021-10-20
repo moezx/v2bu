@@ -118,7 +118,7 @@ const OrderPage: FC = () => {
                 dataIndex="created_at"
                 key="created_at"
                 render={(createdAt: number) => (
-                  <>{moment.unix(createdAt).format('YYYY/MM/DD HH:MM')}</>
+                  <>{moment.unix(createdAt).format('YYYY/MM/DD HH:mm')}</>
                 )}
               />
               <Column

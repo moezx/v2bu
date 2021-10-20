@@ -47,7 +47,7 @@ const List: FC = () => {
               dataIndex="updated_at"
               key="updated_at"
               render={(updatedAt: string) => {
-                return <>{moment.unix(Number(updatedAt)).format('YYYY/MM/DD HH:MM')}</>
+                return <>{moment.unix(Number(updatedAt)).format('YYYY/MM/DD HH:mm')}</>
               }}
             />
             <Column

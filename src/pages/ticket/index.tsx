@@ -142,13 +142,13 @@ const TicketPage: FC = () => {
                 title={intl.formatMessage({ id: 'common.column.created_at' })}
                 dataIndex="created_at"
                 key="created_At"
-                render={(createdAt) => moment.unix(Number(createdAt)).format('YYYY/MM/DD HH:MM')}
+                render={(createdAt) => moment.unix(Number(createdAt)).format('YYYY/MM/DD HH:mm')}
               />
               <Column
                 title={intl.formatMessage({ id: 'ticket.column.updated_at' })}
                 dataIndex="updated_at"
                 key="updated_At"
-                render={(updatedAt) => moment.unix(Number(updatedAt)).format('YYYY/MM/DD HH:MM')}
+                render={(updatedAt) => moment.unix(Number(updatedAt)).format('YYYY/MM/DD HH:mm')}
               />
               <Column
                 title={intl.formatMessage({ id: 'common.column.operation' })}

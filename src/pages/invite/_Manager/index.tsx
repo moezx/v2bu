@@ -59,7 +59,7 @@ const Manager: FC<managerProps> = (props) => {
               dataIndex="created_at"
               key="created_at"
               render={(createdAt) => {
-                return <>{moment.unix(Number(createdAt)).format('YYYY/MM/DD HH:MM')}</>
+                return <>{moment.unix(Number(createdAt)).format('YYYY/MM/DD HH:mm')}</>
               }}
             />
             <Column
