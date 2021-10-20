@@ -126,7 +126,7 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
               prcieMethodChangeHandler(e, e.target.value as string)
             }}
           >
-            {item.month_price && (
+            {item.month_price > 0 && (
               <Radio.Button value="month_price">
                 <span>
                   {intl.formatMessage({ id: 'plan.detail.month_price' })}
@@ -135,7 +135,7 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
                 </span>
               </Radio.Button>
             )}
-            {item.quarter_price && (
+            {item.quarter_price > 0 && (
               <Radio.Button value="quarter_price">
                 <span>
                   {intl.formatMessage({ id: 'plan.detail.quarter_price' })}
@@ -146,7 +146,7 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
                 </span>
               </Radio.Button>
             )}
-            {item.half_year_price && (
+            {item.half_year_price > 0 && (
               <Radio.Button value="half_year_price">
                 <span>
                   {intl.formatMessage({ id: 'plan.detail.half_year_price' })}
@@ -157,7 +157,7 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
                 </span>
               </Radio.Button>
             )}
-            {item.year_price && (
+            {item.year_price > 0 && (
               <Radio.Button value="year_price">
                 <span>
                   {intl.formatMessage({ id: 'plan.detail.year_price' })}
@@ -166,7 +166,7 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
                 </span>
               </Radio.Button>
             )}
-            {item.two_year_price && (
+            {item.two_year_price > 0 && (
               <Radio.Button value="two_year_price">
                 <span>
                   {intl.formatMessage({ id: 'plan.detail.two_year_price' })}
@@ -177,7 +177,7 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
                 </span>
               </Radio.Button>
             )}
-            {item.three_year_price && (
+            {item.three_year_price > 0 && (
               <Radio.Button value="three_year_price">
                 <span>
                   {intl.formatMessage({ id: 'plan.detail.three_year_price' })}
@@ -188,7 +188,7 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
                 </span>
               </Radio.Button>
             )}
-            {item.onetime_price && (
+            {item.onetime_price > 0 && (
               <Radio.Button value="onetime_price">
                 <span>
                   {intl.formatMessage({ id: 'plan.detail.onetime_price' })}
@@ -199,7 +199,7 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
                 </span>
               </Radio.Button>
             )}
-            {item.reset_price && (
+            {item.reset_price > 0 && (
               <Radio.Button value="reset_price">
                 <span>
                   {intl.formatMessage({ id: 'plan.detail.reset_price' })}
