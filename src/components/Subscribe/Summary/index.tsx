@@ -14,15 +14,15 @@ export interface summaryProps {
 const Summary: FC<summaryProps> = (props) => {
   const { planName, expiredDay, leftDay, resetDay, percentBar, usedTraffic, transferTotal } = props
   const intl = useIntl()
+  console.log(expiredDay, leftDay)
   return (
     <>
       <div>
         <h3 className="h4 font-w700 mb-1">{planName}</h3>
         <p className="font-size-sm text-muted">
-          {expiredDay === null ||
-            (leftDay === null && (
-              <span>{intl.formatMessage({ id: 'subscribe.summary.not_expired' })}</span>
-            ))}
+          {expiredDay === null && (
+            <span>{intl.formatMessage({ id: 'subscribe.summary.not_expired' })}</span>
+          )}
 
           {leftDay !== null && Number(leftDay).valueOf() > 0 && (
             <span>
