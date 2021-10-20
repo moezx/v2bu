@@ -22,9 +22,7 @@ const OrderDetailPage: FC<IRouteComponentProps> = (props) => {
   const [userPrice, setUserPrice] = useState<operationProps>()
   const [userPayment, setUserPayment] = useState(0)
   const { getMethodName, getMethodPrice } = useModel('usePlanModel')
-  const [cancelStatus, setCancelStatus] = useState(false)
   const [changeStatus, setChangeStatus] = useState(false)
-  const [paymentStatus, setPaymentStatus] = useState(false)
   const [checkInterval, setCheckIntelVal] = useState<number | null>(null)
   const [qrcodeModalVisible, setQRcodeModalVisible] = useState(false)
   const [qrcodeUrl, setQrcodeUrl] = useState('')
@@ -55,7 +53,7 @@ const OrderDetailPage: FC<IRouteComponentProps> = (props) => {
 
   const onPaymentSuccessHandler = (callbackResult: API.User.OrderCheckoutResult) => {
     if (callbackResult.type === -1 && callbackResult.data === true) {
-      setPaymentStatus(true)
+      setChangeStatus(true)
       return
     }
 
@@ -75,6 +73,10 @@ const OrderDetailPage: FC<IRouteComponentProps> = (props) => {
   }
 
   useEffect(() => {
+    if (changeStatus === false && userOrder !== undefined) {
+      return
+    }
+
     setMenuName(intl.formatMessage({ id: 'order.detail.title' }))
     ;(async () => {
       const orderResult = await order({ trade_no: id })
@@ -83,9 +85,10 @@ const OrderDetailPage: FC<IRouteComponentProps> = (props) => {
         return
       }
       setUserOrder(orderResult.data)
+      setChangeStatus(false)
     })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, cancelStatus, changeStatus, paymentStatus])
+  }, [id, changeStatus])
 
   useEffect(() => {
     if (userOrder?.status === 0) {
@@ -124,7 +127,7 @@ const OrderDetailPage: FC<IRouteComponentProps> = (props) => {
     if (orderCancel === undefined || orderCancelResult.data !== true) {
       return
     }
-    setCancelStatus(true)
+    setChangeStatus(true)
   }
 
   const paymentChangeHandler = (paymentIndex: number) => {
