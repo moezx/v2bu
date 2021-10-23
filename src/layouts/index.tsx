@@ -65,11 +65,16 @@ const LayoutPage: FC<IRouteComponentProps> = (props) => {
     setSideOpen(false)
   }
 
+  let locale = zhCN
+  if (getLocale() === 'en-US') {
+    locale = enUS
+  } else if (getLocale() === 'vi-VN') {
+    locale = viVN
+  }
+
   return (
     <>
-      <ConfigProvider
-        locale={getLocale() === 'zh-CN' ? zhCN : getLocale() === 'en-US' ? enUS : viVN}
-      >
+      <ConfigProvider locale={locale}>
         <div id="page-container" className={containerClassNames}>
           <div
             className="v2board-nav-mask"

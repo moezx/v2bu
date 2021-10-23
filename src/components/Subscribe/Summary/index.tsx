@@ -14,7 +14,6 @@ export interface summaryProps {
 const Summary: FC<summaryProps> = (props) => {
   const { planName, expiredDay, leftDay, resetDay, percentBar, usedTraffic, transferTotal } = props
   const intl = useIntl()
-  console.log(expiredDay, leftDay)
   return (
     <>
       <div>

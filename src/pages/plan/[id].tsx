@@ -43,6 +43,7 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
 
   useEffect(() => {
     initSubState()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
