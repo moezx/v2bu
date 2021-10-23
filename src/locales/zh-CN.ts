@@ -103,7 +103,7 @@ export default {
   'dashboard.event.unpaid_orders': '还有未支付的订单',
   'dashboard.event.pay_now': '立即支付',
   'dashboard.event.view_now': '立即查看',
-  'dashboard.event.processing': `{unprocessedTickets} 条工单正在处理中 `,
+  'dashboard.event.open_ticket': `{number} 条工单正在处理中 `,
   'dashboard.event.nothing': '没有任何事件',
   'dashboard.event.pending': '待办事件',
   'knowledge.last_update': '最后更新',

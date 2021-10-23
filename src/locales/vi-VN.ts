@@ -106,7 +106,7 @@ export default {
   'dashboard.event.unpaid_orders': 'Vẫn còn đơn hàng chưa thanh toán',
   'dashboard.event.pay_now': 'Thanh toán ngay',
   'dashboard.event.view_now': 'Xem ngay',
-  'dashboard.event.processing': `{unprocessedTickets} Ticket hỗ trợ đang được xử lý `,
+  'dashboard.event.open_ticket': `{number} Ticket hỗ trợ đang được xử lý `,
   'dashboard.event.nothing': 'Không có dữ liệu',
   'dashboard.event.pending': 'Để thực hiện',
   'knowledge.last_update': 'Lần cập nhật cuối cùng vào',

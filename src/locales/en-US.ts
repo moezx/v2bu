@@ -105,7 +105,7 @@ export default {
   'dashboard.event.unpaid_orders': 'There are still unpaid orders',
   'dashboard.event.pay_now': 'Pay now',
   'dashboard.event.view_now': 'View now',
-  'dashboard.event.processing': `{unprocessedTickets} Ticket is being processed `,
+  'dashboard.event.open_ticket': `{number} Ticket is being processed `,
   'dashboard.event.nothing': 'No events',
   'dashboard.event.pending': 'To do event',
   'knowledge.last_update': 'Last update',

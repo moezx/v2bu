@@ -80,8 +80,8 @@ const Event: FC = () => {
       <div className="alert alert-warning" role="alert">
         <Space>
           {intl.formatMessage(
-            { id: 'dashboard.event.processing' },
-            { unprocessedTickets: <strong>{unprocessedTickets}</strong> },
+            { id: 'dashboard.event.open_ticket' },
+            { number: <strong>{unprocessedTickets}</strong> },
           )}
           <Link className="alert-link" to="/ticket">
             {intl.formatMessage({ id: 'dashboard.event.view_now' })}
