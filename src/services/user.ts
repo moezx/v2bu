@@ -221,25 +221,27 @@ export async function inviteOrders(options?: Record<string, any>) {
   })
 }
 
-export async function transfer(params: API.User.TransferParams, options?: Record<string, any>) {
+export async function transfer(body: API.User.TransferParams, options?: Record<string, any>) {
   return request<API.User.TransferResult>('/api/v1/user/transfer', {
     method: 'POST',
-    params: {
-      ...params,
+    headers: {
+      'Content-Type': apiContentType,
     },
+    data: body,
     ...(options || {}),
   })
 }
 
 export async function ticketWithdraw(
-  params: API.User.TicketWithdrawParams,
+  body: API.User.TicketWithdrawParams,
   options?: Record<string, any>,
 ) {
   return request<API.User.TicketWithdrawResult>('/api/v1/user/ticket/withdraw', {
     method: 'POST',
-    params: {
-      ...params,
+    headers: {
+      'Content-Type': apiContentType,
     },
+    data: body,
     ...(options || {}),
   })
 }
