@@ -109,6 +109,8 @@ export default {
   'dashboard.event.nothing': 'No events',
   'dashboard.event.pending': 'To do event',
   'knowledge.last_update': 'Last update',
+  'knowledge.lock.title': "You need to purchase a subscription to view",
+  'knowledge.lock.btn': 'Subscribe now',
   'order.cancel': 'Canel',
   'order.view_detail': 'View Details',
   'order.column.trade_no': '# Order Numbe',

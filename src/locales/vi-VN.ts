@@ -110,6 +110,8 @@ export default {
   'dashboard.event.nothing': 'Không có dữ liệu',
   'dashboard.event.pending': 'Để thực hiện',
   'knowledge.last_update': 'Lần cập nhật cuối cùng vào',
+  'knowledge.lock.title': "Bạn cần phải mua một đăng ký để xem",
+  'knowledge.lock.btn': 'Theo dõi ngay',
   'order.cancel': 'Hủy',
   'order.view_detail': 'Xem chi tiết',
   'order.column.trade_no': '# Mã đơn hàng',

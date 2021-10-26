@@ -1,10 +1,10 @@
 import type { FC } from 'react'
 import React, { useState } from 'react'
 import { knowledge } from '@/services'
-import { Drawer } from 'antd'
+import { Drawer, Result, Button} from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import moment from 'moment'
-import { Link, useIntl } from 'umi'
+import { Link, useIntl, history, useModel} from 'umi'
 import MarkdownIt from 'markdown-it'
 
 const mdParser = new MarkdownIt({ html: true })
@@ -18,6 +18,8 @@ const KnowLedge: FC<KnowLedgeProps> = (props) => {
   const { knowledges, categories } = props
   const [userKnowledge, setUserKnowledge] = useState<API.User.KnowledgeResult>()
   const [visible, setVisible] = useState(false)
+  const [lock, setLock] = useState(false)
+  const {subState} = useModel('useSubModel')
   const intl = useIntl()
 
   const showDrawer = () => {
@@ -28,14 +30,26 @@ const KnowLedge: FC<KnowLedgeProps> = (props) => {
     setUserKnowledge(undefined)
   }
 
-  const clickHandler = (e: React.MouseEvent<HTMLAnchorElement>, id: number) => {
+
+  const showDetailHandler = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    item: API.User.KnowledgeItem,
+  ) => {
     ;(async () => {
       e.preventDefault()
-      const knowLedgeResult = await knowledge({ id })
-      if (knowLedgeResult === undefined) {
-        return
+      console.log(subState)
+
+      if (item.free === 1 || (subState.planID !== undefined && subState.planID > 0 )) {
+        const knowLedgeResult = await knowledge({ id: item.id })
+        if (knowLedgeResult === undefined) {
+          return
+        }
+        setUserKnowledge(knowLedgeResult)
+        setLock(false)
+      } else {
+        setLock(true)
       }
-      setUserKnowledge(knowLedgeResult)
+
       showDrawer()
     })()
   }
@@ -53,25 +67,26 @@ const KnowLedge: FC<KnowLedgeProps> = (props) => {
                     <h3 className="block-title">{category}</h3>
                   </div>
                   <div className="list-group">
-                    {knowledges?.data[category].map((knowledgeItem, knowledgeIndex) => {
-                      const knowledgeKey: number = knowledgeIndex
-                      return (
-                        <Link
-                          className="list-group-item list-group-item-action"
-                          key={knowledgeKey}
-                          to="#"
-                          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                            clickHandler(e, knowledgeItem.id)
-                          }}
-                        >
-                          <h5 className="font-size-base mb-1">{knowledgeItem.title}</h5>
-                          <small>
-                            {intl.formatMessage({ id: 'knowledge.last_update' })}:
-                            {moment.unix(Number(knowledgeItem.updated_at)).format('l')}
-                          </small>
-                        </Link>
-                      )
-                    })}
+                    {knowledges?.data[category].map(
+                      (knowledgeItem: API.User.KnowledgeItem, knowledgeIndex: number) => {
+                        return (
+                          <Link
+                            className="list-group-item list-group-item-action"
+                            key={knowledgeIndex}
+                            to="#"
+                            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                              showDetailHandler(e, knowledgeItem)
+                            }}
+                          >
+                            <h5 className="font-size-base mb-1">{knowledgeItem.title}</h5>
+                            <small>
+                              {intl.formatMessage({ id: 'knowledge.last_update' })}:
+                              {moment.unix(Number(knowledgeItem.updated_at)).format('l')}
+                            </small>
+                          </Link>
+                        )
+                      },
+                    )}
                   </div>
                 </div>
               </div>
@@ -79,19 +94,33 @@ const KnowLedge: FC<KnowLedgeProps> = (props) => {
           )
         })}
       <Drawer
-        title={userKnowledge?.data.title ?? 'Loading...'}
+        title={lock ? "" : userKnowledge?.data.title ?? 'Loading...'}
         placement="right"
         closable={true}
         onClose={onClose}
         visible={visible}
         width="80%"
       >
-        {userKnowledge?.data.body !== undefined ? (
+        {lock === false &&(userKnowledge?.data.body !== undefined ? (
           <div
             dangerouslySetInnerHTML={{ __html: mdParser.render(userKnowledge.data.body as string) }}
           ></div>
         ) : (
           <LoadingOutlined />
+        ))}
+
+        {lock === true && (
+          <Result
+            title={intl.formatMessage({id:'knowledge.lock.title'})}
+            extra={
+              <Button type="primary" onClick={(e:React.MouseEvent)=>{
+                e.preventDefault()
+                history.push('/plan')
+              }}>
+                {intl.formatMessage({id:'knowledge.lock.btn'})}
+              </Button>
+            }
+          />
         )}
       </Drawer>
     </>

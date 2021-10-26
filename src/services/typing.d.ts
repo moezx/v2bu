@@ -100,6 +100,7 @@ declare namespace API {
       body?: string
       language?: string
       show?: number
+      free?: number
       sort?: number
       created_at?: number
     }
