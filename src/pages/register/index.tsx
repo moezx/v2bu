@@ -28,7 +28,7 @@ const RegisterPage: FC = () => {
   const [recaptchaModalVisible, setRecaptchaModalVisible] = useState(false)
   const [recaptChaModalType, setRecaptChaModalType] = useState<'emailCode' | 'submit'>('emailCode')
   const intl = useIntl()
-  let defaultInviteCode: string|undefined
+  let defaultInviteCode: string | undefined
   if (history.location.query !== undefined) {
     defaultInviteCode =
       typeof history.location.query.code === 'string' ? history.location.query.code : undefined
