@@ -17,6 +17,7 @@ import delay from '@umijs/utils/lib/delay/delay'
 const OrderDetailPage: FC<IRouteComponentProps> = (props) => {
   const { match, history } = props
   const { setMenuName } = useModel('useMenuModel')
+  const { refresh}  = useModel('useSubModel')
   const [userOrder, setUserOrder] = useState<API.User.OrderItem>()
   const [payments, setPayments] = useState<API.User.PaymentNameItem[]>()
   const [userPrice, setUserPrice] = useState<operationProps>()
@@ -39,8 +40,13 @@ const OrderDetailPage: FC<IRouteComponentProps> = (props) => {
     if (orderCheckInterval === undefined) {
       return
     }
+
     if (orderCheckResult.data !== userOrder?.status) {
       setChangeStatus(true)
+    }
+
+    if (orderCheckResult.data === 3) {
+      refresh()
     }
   }
 
