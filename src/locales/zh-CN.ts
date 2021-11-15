@@ -66,6 +66,7 @@ export default {
   'modal.wallet.wallet.withdrawal.account': '提现账号',
   'modal.wallet.wallet.withdrawal.enter_account': '请输入提现账号',
   'subscribe.oneclick.copy_url': '复制订阅地址',
+  'subscribe.oneclick.view_qrcode': '订阅二维码',
   'subscribe.oneclick.copy_btn': '复制订阅',
   'subscribe.oneclick.btn': '一键订阅',
   'subscribe.oneclick.export': `导入到 {name}`,

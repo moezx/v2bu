@@ -67,6 +67,7 @@ export default {
   'modal.wallet.wallet.withdrawal.account': 'Withdrawal Account',
   'modal.wallet.wallet.withdrawal.enter_account': 'Please enter the withdrawal account',
   'subscribe.oneclick.copy_url': 'Copy Subscription URL',
+  'subscribe.oneclick.view_qrcode': 'Subscribe to QR Code',
   'subscribe.oneclick.copy_btn': 'Copy SubScription',
   'subscribe.oneclick.btn': 'Quick Subscription',
   'subscribe.oneclick.export': `Export to {name}`,

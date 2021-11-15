@@ -68,6 +68,7 @@ export default {
   'modal.wallet.wallet.withdrawal.account': 'Tài khoản rút tiền',
   'modal.wallet.wallet.withdrawal.enter_account': 'Vui lòng điền tài khoản rút tiền',
   'subscribe.oneclick.copy_url': 'Sao chép liên kết',
+  'subscribe.oneclick.view_qrcode': 'Đăng ký mã QR',
   'subscribe.oneclick.copy_btn': 'Sao chép Subscription',
   'subscribe.oneclick.btn': 'Nhấp vào đây để đồng bộ máy chủ',
   'subscribe.oneclick.export': `Chuyển đến {name}`,
