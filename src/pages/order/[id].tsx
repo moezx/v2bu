@@ -17,7 +17,7 @@ import delay from '@umijs/utils/lib/delay/delay'
 const OrderDetailPage: FC<IRouteComponentProps> = (props) => {
   const { match, history } = props
   const { setMenuName } = useModel('useMenuModel')
-  const { refresh}  = useModel('useSubModel')
+  const { refresh } = useModel('useSubModel')
   const [userOrder, setUserOrder] = useState<API.User.OrderItem>()
   const [payments, setPayments] = useState<API.User.PaymentNameItem[]>()
   const [userPrice, setUserPrice] = useState<operationProps>()
@@ -315,7 +315,15 @@ const OrderDetailPage: FC<IRouteComponentProps> = (props) => {
   return (
     <>
       {renderOrder()}
-      <QRCodeModal url={qrcodeUrl} visible={qrcodeModalVisible} />
+      <QRCodeModal
+        url={qrcodeUrl}
+        visible={qrcodeModalVisible}
+        footer={
+          <div style={{ textAlign: 'center' }}>
+            {intl.formatMessage({ id: 'modal.qrcode.waiting' })}
+          </div>
+        }
+      />
     </>
   )
 }
