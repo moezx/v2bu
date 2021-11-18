@@ -1,10 +1,10 @@
-import type { RequestConfig } from 'umi'
-import { history, getIntl, getLocale } from 'umi'
+import { RequestConfig, useIntl } from 'umi'
+import { history, getIntl, getLocale} from 'umi'
 import { notification } from 'antd'
 import { userInfo } from '@/services'
 import { loginPath, isNoFetchUserPath, notFoundPath, apiHost, isStandAlone } from '@/default'
-
 const intl = getIntl()
+
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
  * */
@@ -89,9 +89,10 @@ const errorHandler = (error: any) => {
   }
 
   if (errorMessages.length > 0) {
+    const curIntl = getIntl()
     notification.error({
       description: errorMessages.map((message) => <div key={message}>{message}</div>),
-      message: intl.formatMessage({ id: 'common.message.request_error' }),
+      message: curIntl.formatMessage({ id: 'common.message.request_error' }),
     })
   }
   // throw error
