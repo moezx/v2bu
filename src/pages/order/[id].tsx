@@ -124,6 +124,9 @@ const OrderDetailPage: FC<IRouteComponentProps> = (props) => {
 
     if (userOrder && userOrder.status in [0, 1]) {
       setCheckIntelVal(checkDelay)
+      if (userOrder.status === 1) {
+        setQRcodeModalVisible(false)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userOrder?.status])
