@@ -44,4 +44,5 @@ export const isProduction = process.env.NODE_ENV === 'production'
 export const currencyFormatter = new Intl.NumberFormat(process.env.CURRENCY_LOCALE, {
   style: 'currency',
   currency: process.env.CURRENCY_UNIT,
+  maximumFractionDigits: Number(process.env.CURRENCY_MAX_DIGITS).valueOf()
 })
