@@ -24,7 +24,7 @@ const QRcodeModal: FC<qrcodeModalProps> = (props) => {
         footer={footer ?? null}
         onCancel={onCancel}
       >
-        <QRcode value={url} size={250} includeMargin={false} renderAs="svg" />,
+        <QRcode value={url} size={250} includeMargin={false} renderAs="svg" />
       </Modal>
     </>
   )
