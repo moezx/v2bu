@@ -37,7 +37,7 @@ const OneClick: FC<oneClickProps> = (props) => {
 
   const windowsOsxMenu = (
     <>
-      <Menu>
+      <Menu selectable={false}>
         <Menu.Item key="0">
           <Link
             to=""
@@ -72,7 +72,7 @@ const OneClick: FC<oneClickProps> = (props) => {
 
   const iosMenu = (
     <>
-      <Menu>
+      <Menu selectable={false}>
         <Menu.Item key="0">
           <Link
             to=""
@@ -119,7 +119,7 @@ const OneClick: FC<oneClickProps> = (props) => {
 
   const androidMenu = (
     <>
-      <Menu>
+      <Menu selectable={false}>
         <Menu.Item key="0">
           <Link
             to=""
