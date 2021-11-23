@@ -33,6 +33,7 @@ const DropDownUser: FC = () => {
           boxShadow: '0 .25rem 2rem rgba(0,0,0,.08)',
           borderColor: '#ebebeb',
         }}
+        selectable={false}
       >
         <Menu.Item key="0" icon={<i className="far fa-fw fa-user mr-1"> </i>}>
           <Link
