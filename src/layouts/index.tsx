@@ -28,7 +28,9 @@ const LayoutPage: FC<IRouteComponentProps> = (props) => {
   const [sideOpen, setSideOpen] = useState(false)
   const { children, location } = props
   const darkMode = localStorage.getItem('dark-mode') === '1'
-  useDarkreader(darkMode)
+
+  useDarkreader(darkMode, undefined, {ignoreInlineStyle:["path"], invert:[], ignoreImageAnalysis:[], 
+  css:"background-color: ${white} !important;"})
 
   const containerClassNames = classNames(
     'sidebar-o',
