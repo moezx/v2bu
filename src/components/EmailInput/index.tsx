@@ -40,25 +40,35 @@ const EmailInput: FC<emailInputProps> = (props) => {
   return (
     <>
       <div className={divClassNames}>
-        <input
-          ref={inputRef}
-          onChange={changeHandler}
-          className="form-control form-control-lg form-control-alt"
-          placeholder={intl.formatMessage({ id: 'common.email' })}
-        />
-        {whiteList !== undefined && (
-          <select
-            ref={selectRef}
+        <div className="input-group">
+          <input
+            ref={inputRef}
             onChange={changeHandler}
-            className="form-control-lg form-control-alt"
-          >
-            {whiteList.map((suffix) => (
-              <option value={suffix} key={suffix}>
-                {suffix}
-              </option>
-            ))}
-          </select>
-        )}
+            className="form-control form-control-lg form-control-alt"
+            placeholder={intl.formatMessage({ id: 'common.email' })}
+          />
+
+          {whiteList !== undefined && (
+            <>
+              <div className="input-group-prepend">
+                <button type="button" className="btn btn-success">
+                  <i className="fa  fa-at"></i>        
+                  </button>      
+              </div>
+              <select
+                ref={selectRef}
+                onChange={changeHandler}
+                className="form-control-lg form-control-alt"
+              >
+                {whiteList.map((suffix) => (
+                  <option value={suffix} key={suffix}>
+                    {suffix}
+                  </option>
+                ))}
+              </select>
+            </>
+          )}
+        </div>
       </div>
     </>
   )
