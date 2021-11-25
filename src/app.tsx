@@ -1,9 +1,8 @@
-import { RequestConfig, useIntl } from 'umi'
-import { history, getIntl, getLocale} from 'umi'
+import type { RequestConfig } from 'umi'
+import { history, getIntl, getLocale } from 'umi'
 import { notification } from 'antd'
 import { userInfo } from '@/services'
 import { loginPath, isNoFetchUserPath, notFoundPath, apiHost, isStandAlone } from '@/default'
-const intl = getIntl()
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state

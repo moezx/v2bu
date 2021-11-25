@@ -50,7 +50,7 @@ const Summary: FC<summaryProps> = (props) => {
               className="progress-bar progress-bar-striped progress-bar-animated bg-success"
               role="progressbar"
               style={{ width: percentBar }}
-            ></div>
+            />
           </div>
           <p className="font-size-sm font-w600 mb-3">
             <span className="font-w700">

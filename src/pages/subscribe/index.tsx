@@ -78,7 +78,7 @@ const SubscribePage: FC = () => {
       <div className="content content-full">
         {initialized && <Top />}
         {userDataSource && (initialState?.currentUser?.data.plan_id as number) > 0 && (
-          <List dataSource={userDataSource}></List>
+          <List dataSource={userDataSource} />
         )}
         {initialized &&
           userDataSource === undefined &&

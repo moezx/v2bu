@@ -23,16 +23,16 @@ const Subscribe: FC = () => {
       <div className="justify-content-md-between align-items-md-center">
         <Summary {...userSummaryProps} />
         <div className="mb-3">
-          <OneClick {...useOneClickProps}></OneClick>
+          <OneClick {...useOneClickProps} />
           <Link
             className="btn btn-sm btn-outline-primary btn-rounded px-3 mr-1 my-1"
             to="/subscribe"
           >
-            <i className="fa fa-cog mr-1"></i>
+            <i className="fa fa-cog mr-1" />
             {intl.formatMessage({ id: 'dashboard.subscribe.view_subscription' })}
           </Link>
           <Link className="btn btn-sm btn-outline-danger btn-rounded px-3 my-1" to={planPath}>
-            <i className="fa fa-redo mr-1"></i>
+            <i className="fa fa-redo mr-1" />
             {intl.formatMessage({ id: 'dashboard.subscribe.renew' })}
           </Link>
         </div>

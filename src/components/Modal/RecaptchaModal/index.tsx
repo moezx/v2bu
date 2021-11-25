@@ -6,7 +6,7 @@ import { useRef, useEffect } from 'react'
 export interface recaptchaModalProps {
   visible: boolean
   sitekey: string
-  type: 'emailCode' | 'submit'
+  type: 'emailCode' | 'submit' | 'other'
   onCancel: () => void
   onVerified: (data: string, type: string) => void
 }

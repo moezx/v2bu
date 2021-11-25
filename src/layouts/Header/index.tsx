@@ -35,8 +35,8 @@ const Header: FC<slideOpenProps> = (props) => {
           {menuName !== '' ? menuName : menuIndex && menus.getName(menuIndex)}
         </div>
         <DropDownDark />
-        <DropDownLang placement="bottomRight"></DropDownLang>
-        <DropDownUser></DropDownUser>
+        <DropDownLang placement="bottomRight" />
+        <DropDownUser />
       </div>
     </header>
   )

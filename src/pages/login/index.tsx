@@ -91,7 +91,7 @@ const LoginPage: React.FC = () => {
                   <span className="text-primary">{title}</span>
                 </Link>
                 <p className="text-uppercase font-w700 font-size-sm text-muted">{description}</p>
-                <DropDownLang placement="bottomCenter"></DropDownLang>
+                <DropDownLang placement="bottomCenter" />
               </div>
 
               <div className="row no-gutters justify-content-center">

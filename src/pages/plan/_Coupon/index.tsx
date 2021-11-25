@@ -1,5 +1,5 @@
 import './style.less'
-import type { ChangeEvent, FC, ReactNode } from 'react'
+import type { FC } from 'react'
 import React from 'react'
 import { useRef, useState } from 'react'
 import { useDebounceFn } from 'ahooks'
@@ -36,7 +36,7 @@ const Coupon: FC<couponProps> = (props) => {
         if (couponCheckResult === undefined || couponCheckResult.data === undefined) {
           return
         }
-    
+
         const { type, value, name } = couponCheckResult.data
         onCheckSuccess({ planID, type, value, name, code })
         setLastCheckCode(code)
@@ -61,10 +61,10 @@ const Coupon: FC<couponProps> = (props) => {
           ref={inputRef}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             if (checkDisabled === false) {
-              return 
+              return
             }
             const code = e.target.value
-            if (code.length > 0 && lastCheckCode !== code ) {
+            if (code.length > 0 && lastCheckCode !== code) {
               setCheckDisabled(false)
             }
           }}

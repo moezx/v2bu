@@ -45,7 +45,7 @@ export default (): subModel => {
     const surgeUrl: string = `surge:///install-config?url=${subscribeUrl}&name=${title}`
     const shaowRocketContent: string = Buffer.from(subscribeUrl).toString('base64')
     const shadowrocketUrl: string = `shadowrocket://add/sub://${shaowRocketContent}?remark=${title}`
-    const quantumultXContent = {"server_remote":[`${subscribeUrl},tag=${title}`]}
+    const quantumultXContent = { server_remote: [`${subscribeUrl},tag=${title}`] }
     const quantumultXContentJSON = JSON.stringify(quantumultXContent)
     const quantumultXUrl: string = `quantumult-x:///update-configuration?remote-resource=${quantumultXContentJSON.valueOf()}`
     console.log(quantumultXUrl)

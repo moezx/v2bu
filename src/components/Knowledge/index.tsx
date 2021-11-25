@@ -102,7 +102,7 @@ const KnowLedge: FC<KnowLedgeProps> = (props) => {
               dangerouslySetInnerHTML={{
                 __html: mdParser.render(userKnowledge.data.body as string),
               }}
-            ></div>
+            />
           ) : (
             <LoadingOutlined />
           ))}

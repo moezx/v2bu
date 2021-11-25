@@ -52,8 +52,8 @@ const EmailInput: FC<emailInputProps> = (props) => {
             <>
               <div className="input-group-prepend">
                 <button type="button" className="btn btn-success">
-                  <i className="fa  fa-at"></i>        
-                  </button>      
+                  <i className="fa  fa-at" />
+                </button>
               </div>
               <select
                 ref={selectRef}

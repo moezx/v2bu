@@ -15,7 +15,7 @@ const CarouseModal: FC<carouseModalProps> = (props) => {
   return (
     <>
       <Modal title={title} footer={null} visible={visible} onCancel={onCancel}>
-        <div dangerouslySetInnerHTML={{ __html: mdParser.render(children as string) }}></div>
+        <div dangerouslySetInnerHTML={{ __html: mdParser.render(children as string) }} />
       </Modal>
     </>
   )

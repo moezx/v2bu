@@ -46,7 +46,7 @@ const WalletTransferModal: FC<walletTransferModalProps> = (props) => {
       >
         <div className="alert alert-danger d-flex align-items-center" role="alert">
           <div className="flex-00-auto">
-            <i className="fa fa-fw fa-info-circle"></i>
+            <i className="fa fa-fw fa-info-circle" />
           </div>
           <div className="flex-fill ml-3">
             <p className="mb-0">{intl.formatMessage({ id: 'modal.wallet.transfer.tip' })}</p>

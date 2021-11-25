@@ -24,14 +24,14 @@ const Top: FC = () => {
         <div className="block block-rounded mb-4">
           <div className="block-content block-content-full">
             <div className="d-md-flex justify-content-md-between align-items-md-center">
-              <Summary {...userSummaryProps}></Summary>
+              <Summary {...userSummaryProps} />
               <div className="p-1 p-md-3 col-md-6 col-xs-12 text-md-right">
-                <OneClick {...userOneClickProps}></OneClick>
+                <OneClick {...userOneClickProps} />
                 {(subState.planID as number) > 0 && (
                   <Operation
                     planID={subState.planID as number}
                     onResetPrivate={resetPrivateCallBack}
-                  ></Operation>
+                  />
                 )}
               </div>
             </div>

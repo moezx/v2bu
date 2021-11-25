@@ -29,8 +29,12 @@ const LayoutPage: FC<IRouteComponentProps> = (props) => {
   const { children, location } = props
   const darkMode = localStorage.getItem('dark-mode') === '1'
 
-  useDarkreader(darkMode, undefined, {ignoreInlineStyle:["path"], invert:[], ignoreImageAnalysis:[], 
-  css:"background-color: ${white} !important;"})
+  useDarkreader(darkMode, undefined, {
+    ignoreInlineStyle: ['path'],
+    invert: [],
+    ignoreImageAnalysis: [],
+    css: 'background-color: ${white} !important;',
+  })
 
   const containerClassNames = classNames(
     'sidebar-o',
@@ -82,14 +86,14 @@ const LayoutPage: FC<IRouteComponentProps> = (props) => {
             className="v2board-nav-mask"
             onClick={sideCloseHandler}
             style={{ display: sideOpen ? 'block' : 'none' }}
-          ></div>
-          <Sidebar onSideClose={sideCloseHandler}></Sidebar>
+          />
+          <Sidebar onSideClose={sideCloseHandler} />
 
-          <Header onSideOpen={sideOpenHandler}></Header>
+          <Header onSideOpen={sideOpenHandler} />
 
           <main id="main-container">{children}</main>
 
-          <Footer name={title} version={version}></Footer>
+          <Footer name={title} version={version} />
         </div>
       </ConfigProvider>
     </>

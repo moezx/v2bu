@@ -45,7 +45,7 @@ const OneClick: FC<oneClickProps> = (props) => {
               clickCopyHandler(e)
             }}
           >
-            <i className="fa fa-copy mr-2"></i>
+            <i className="fa fa-copy mr-2" />
             {intl.formatMessage({ id: 'subscribe.oneclick.copy_url' })}
           </Link>
         </Menu.Item>
@@ -56,13 +56,13 @@ const OneClick: FC<oneClickProps> = (props) => {
               viewQrcodeHandler(e)
             }}
           >
-            <i className="fa fa-qrcode mr-2"></i>
+            <i className="fa fa-qrcode mr-2" />
             {intl.formatMessage({ id: 'subscribe.oneclick.view_qrcode' })}
           </Link>
         </Menu.Item>
         <Menu.Item key="2">
           <a href={clashUrl}>
-            <i className="fa fa-share mr-2"></i>
+            <i className="fa fa-share mr-2" />
             {intl.formatMessage({ id: 'subscribe.oneclick.export' }, { name: 'Clashx' })}
           </a>
         </Menu.Item>
@@ -80,7 +80,7 @@ const OneClick: FC<oneClickProps> = (props) => {
               clickCopyHandler(e)
             }}
           >
-            <i className="fa fa-copy mr-2"></i>
+            <i className="fa fa-copy mr-2" />
             {intl.formatMessage({ id: 'subscribe.oneclick.copy_url' })}
           </Link>
         </Menu.Item>
@@ -91,25 +91,25 @@ const OneClick: FC<oneClickProps> = (props) => {
               viewQrcodeHandler(e)
             }}
           >
-            <i className="fa fa-qrcode mr-2"></i>
+            <i className="fa fa-qrcode mr-2" />
             {intl.formatMessage({ id: 'subscribe.oneclick.view_qrcode' })}
           </Link>
         </Menu.Item>
         <Menu.Item key="2">
           <a href={shadowrocketUrl}>
-            <i className="fa fa-share mr-2"></i>
+            <i className="fa fa-share mr-2" />
             {intl.formatMessage({ id: 'subscribe.oneclick.export' }, { name: 'Shadowrocket' })}
           </a>
         </Menu.Item>
         <Menu.Item key="3">
           <a href={quantumultXUrl}>
-            <i className="fa fa-share mr-2"></i>
+            <i className="fa fa-share mr-2" />
             {intl.formatMessage({ id: 'subscribe.oneclick.export' }, { name: 'QuantumultX' })}
           </a>
         </Menu.Item>
         <Menu.Item key="4">
           <a href={surgeUrl}>
-            <i className="fa fa-share mr-2"></i>
+            <i className="fa fa-share mr-2" />
             {intl.formatMessage({ id: 'subscribe.oneclick.export' }, { name: 'Surge' })}
           </a>
         </Menu.Item>
@@ -127,7 +127,7 @@ const OneClick: FC<oneClickProps> = (props) => {
               clickCopyHandler(e)
             }}
           >
-            <i className="fa fa-copy mr-2"></i>
+            <i className="fa fa-copy mr-2" />
             {intl.formatMessage({ id: 'subscribe.oneclick.copy_url' })}
           </Link>
         </Menu.Item>
@@ -138,19 +138,19 @@ const OneClick: FC<oneClickProps> = (props) => {
               viewQrcodeHandler(e)
             }}
           >
-            <i className="fa fa-qrcode mr-2"></i>
+            <i className="fa fa-qrcode mr-2" />
             {intl.formatMessage({ id: 'subscribe.oneclick.view_qrcode' })}
           </Link>
         </Menu.Item>
         <Menu.Item key="2">
           <a href={clashUrl}>
-            <i className="fa fa-share mr-2"></i>
+            <i className="fa fa-share mr-2" />
             {intl.formatMessage({ id: 'subscribe.oneclick.export' }, { name: 'Clash For Android' })}
           </a>
         </Menu.Item>
         <Menu.Item key="3">
           <a href={surgeUrl}>
-            <i className="fa fa-share mr-2"></i>
+            <i className="fa fa-share mr-2" />
             {intl.formatMessage({ id: 'subscribe.oneclick.export' }, { name: 'Surfboard' })}
           </a>
         </Menu.Item>
@@ -159,14 +159,17 @@ const OneClick: FC<oneClickProps> = (props) => {
   )
 
   const selectMenu = () => {
-    if (detect.deviceType.isPhone() || detect.deviceType.isiPad() ||
-     (detect.os.isOSX() &&  navigator.maxTouchPoints > 1)) {
+    if (
+      detect.deviceType.isPhone() ||
+      detect.deviceType.isiPad() ||
+      (detect.os.isOSX() && navigator.maxTouchPoints > 1)
+    ) {
       return iosMenu
     }
     if (detect.os.isOSX() || detect.os.isWindows()) {
       return windowsOsxMenu
     }
-  
+
     if (detect.os.isAndroid()) {
       return androidMenu
     }
@@ -186,7 +189,7 @@ const OneClick: FC<oneClickProps> = (props) => {
             clickCopyHandler(e)
           }}
         >
-          <i className="fa fa-copy mr-1"></i>
+          <i className="fa fa-copy mr-1" />
           {intl.formatMessage({ id: 'subscribe.oneclick.copy_btn' })}
         </Link>
       ) : (
@@ -198,7 +201,7 @@ const OneClick: FC<oneClickProps> = (props) => {
               e.preventDefault()
             }}
           >
-            <i className="fa fa-rss mr-1"></i>
+            <i className="fa fa-rss mr-1" />
             {intl.formatMessage({ id: 'subscribe.oneclick.btn' })}
           </Link>
         </Dropdown>

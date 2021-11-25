@@ -59,11 +59,11 @@ const PlanPage: FC<IRouteComponentProps> = (props) => {
                     <div className="py-2">{renderPrice(plan)}</div>
                   </div>
                   <div className="block-content">
-                    <div className="py-2" dangerouslySetInnerHTML={{ __html: plan.content }}></div>
+                    <div className="py-2" dangerouslySetInnerHTML={{ __html: plan.content }} />
                   </div>
                   <div className="block-content block-content-full bg-body-light">
                     <span className="btn btn-hero-primary btn-rounded px-4">
-                      <i className="fa fa-thumbs-up mr-1"></i>
+                      <i className="fa fa-thumbs-up mr-1" />
                       {intl.formatMessage({ id: 'plan.now' })}
                     </span>
                   </div>

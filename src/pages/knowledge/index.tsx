@@ -30,7 +30,7 @@ const KnowledgePage: FC = () => {
         <KnowLedge
           categories={userCategories}
           knowledges={userKnowledges as API.User.KnowledgesResult}
-        ></KnowLedge>
+        />
       </div>
     </>
   )

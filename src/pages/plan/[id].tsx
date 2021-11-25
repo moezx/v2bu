@@ -89,7 +89,7 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
       discountAmount = coupon.value * 100
       totalAmount = originalTotalAmount - discountAmount
     } else if (coupon.type === 2) {
-      discountAmount = (coupon.value / 100) * (originalTotalAmount/ 100)
+      discountAmount = (coupon.value / 100) * (originalTotalAmount / 100)
       totalAmount = originalTotalAmount - discountAmount
     } else {
       throw Error('wrong coupon code type')
@@ -110,7 +110,7 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
           <div
             className="v2board-plan-content"
             dangerouslySetInnerHTML={{ __html: item.content }}
-          ></div>
+          />
         </div>
       </>
     )
@@ -262,9 +262,9 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
             </div>
             <div className="col-md-4 col-sm-12">
               {userPlan && (
-                <Coupon planID={userPlan?.id} onCheckSuccess={couponCheckCallbackHandler}></Coupon>
+                <Coupon planID={userPlan?.id} onCheckSuccess={couponCheckCallbackHandler} />
               )}
-              {userPrice && <Operation {...userPrice}></Operation>}
+              {userPrice && <Operation {...userPrice} />}
             </div>
           </div>
         )}

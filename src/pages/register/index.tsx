@@ -151,7 +151,7 @@ const RegisterPage: FC = () => {
                     <p className="text-uppercase font-w700 font-size-sm text-muted">
                       {description}
                     </p>
-                    <DropDownLang placement="bottomCenter"></DropDownLang>
+                    <DropDownLang placement="bottomCenter" />
                   </div>
 
                   <div className="row no-gutters justify-content-center">

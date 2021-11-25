@@ -35,7 +35,7 @@ const Sidebar: FC<sidebarProps> = (props) => {
             </div>
           </div>
         </div>
-        <Menu></Menu>
+        <Menu />
       </nav>
     </>
   )

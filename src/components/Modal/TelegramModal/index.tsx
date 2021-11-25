@@ -45,7 +45,7 @@ const TelegramModal: FC<telegramModalProps> = (props) => {
   const content = () => (
     <>
       <h2 className="content-heading pt-1">
-        <i className="fa fa-arrow-right text-info mr-1"></i>
+        <i className="fa fa-arrow-right text-info mr-1" />
         {intl.formatMessage({ id: 'modal.telegram.first_step' })}
       </h2>
       <div>
@@ -55,7 +55,7 @@ const TelegramModal: FC<telegramModalProps> = (props) => {
         </Space>
       </div>
       <h2 className="content-heading">
-        <i className="fa fa-arrow-right text-info mr-1"></i>
+        <i className="fa fa-arrow-right text-info mr-1" />
         {intl.formatMessage({ id: 'modal.telegram.second_step' })}
       </h2>
       <div>
