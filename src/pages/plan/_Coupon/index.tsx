@@ -1,7 +1,7 @@
 import './style.less'
-import type { FC } from 'react'
+import type { ChangeEvent, FC, ReactNode } from 'react'
 import React from 'react'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useDebounceFn } from 'ahooks'
 import { couponCheck } from '@/services'
 import { useIntl } from 'umi'
@@ -22,6 +22,8 @@ export interface couponValues {
 const Coupon: FC<couponProps> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const { planID, onCheckSuccess } = props
+  const [lastCheckCode, setLastCheckCode] = useState('')
+  const [checkDisabled, setCheckDisabled] = useState(true)
   const intl = useIntl()
 
   const { run } = useDebounceFn(
@@ -29,14 +31,16 @@ const Coupon: FC<couponProps> = (props) => {
       ;(async () => {
         e.preventDefault()
         const code = inputRef.current?.value as string
+
         const couponCheckResult = await couponCheck({ plan_id: planID, code })
         if (couponCheckResult === undefined || couponCheckResult.data === undefined) {
           return
         }
-        const { type } = couponCheckResult.data
-        const { value } = couponCheckResult.data
-        const { name } = couponCheckResult.data
+    
+        const { type, value, name } = couponCheckResult.data
         onCheckSuccess({ planID, type, value, name, code })
+        setLastCheckCode(code)
+        setCheckDisabled(true)
       })()
     },
     {
@@ -55,6 +59,15 @@ const Coupon: FC<couponProps> = (props) => {
           className="form-control v2board-input-coupon p-0"
           placeholder={intl.formatMessage({ id: 'plan.detail.coupon.enter_coupon' })}
           ref={inputRef}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            if (checkDisabled === false) {
+              return 
+            }
+            const code = e.target.value
+            if (code.length > 0 && lastCheckCode !== code ) {
+              setCheckDisabled(false)
+            }
+          }}
         />
         <button
           type="button"
@@ -63,6 +76,7 @@ const Coupon: FC<couponProps> = (props) => {
           onClick={(e: React.MouseEvent) => {
             run(e)
           }}
+          disabled={checkDisabled}
         >
           <i className="fa fa-fw fa-ticket-alt mr-2" />
           {intl.formatMessage({ id: 'plan.detail.coupon.check_btn' })}
