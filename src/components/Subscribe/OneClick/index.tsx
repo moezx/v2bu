@@ -159,7 +159,8 @@ const OneClick: FC<oneClickProps> = (props) => {
   )
 
   const selectMenu = () => {
-    if (detect.deviceType.isPhone() || detect.deviceType.isiPad()) {
+    if (detect.deviceType.isPhone() || detect.deviceType.isiPad() ||
+     (detect.os.isOSX() &&  navigator.maxTouchPoints > 1)) {
       return iosMenu
     }
     if (detect.os.isOSX() || detect.os.isWindows()) {
