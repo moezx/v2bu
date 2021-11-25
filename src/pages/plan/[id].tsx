@@ -89,7 +89,7 @@ const PlanDetailPage: FC<IRouteComponentProps> = (props) => {
       discountAmount = coupon.value * 100
       totalAmount = originalTotalAmount - discountAmount
     } else if (coupon.type === 2) {
-      discountAmount = (coupon.value / 100) * (originalTotalAmount / 100)
+      discountAmount = (coupon.value / 100) * originalTotalAmount 
       totalAmount = originalTotalAmount - discountAmount
     } else {
       throw Error('wrong coupon code type')
