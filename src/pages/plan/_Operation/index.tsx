@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import type { FC } from 'react'
 import { Modal } from 'antd'
 import { orderSave } from '@/services'
-import { history, useIntl } from 'umi'
+import { history, useIntl, useModel } from 'umi'
 import { currencyFormatter } from '@/default'
 import { LoadingOutlined } from '@ant-design/icons'
 
@@ -20,6 +20,7 @@ export interface operationProps {
 
 const Operation: FC<operationProps> = (props) => {
   const [disabled, setDisabled] = useState(false)
+  const {subState}  = useModel('useSubModel')
   const intl = useIntl()
 
   const {
@@ -34,26 +35,44 @@ const Operation: FC<operationProps> = (props) => {
     couponCode,
   } = props
 
-  const orderRun = () => {
-    Modal.confirm({
-      title: intl.formatMessage({ id: 'plan.detail.operation.modal.title' }),
-      content: intl.formatMessage({ id: 'plan.detail.operation.modal.content' }),
-      onOk: async (): Promise<any> => {
-        setDisabled(true)
-        let orderSaveParams: API.User.OrderSaveParams = {
-          plan_id: planID,
-          cycle: planMethod,
-        }
-        if (typeof couponCode !== undefined) {
-          orderSaveParams = { ...orderSaveParams, coupon_code: couponCode }
-        }
-        const orderSaveResult = await orderSave(orderSaveParams)
-        if (orderSaveResult !== undefined) {
-          history.push(`/order/${orderSaveResult.data}`)
-        }
+  const orderRun = async () => {
+    setDisabled(true)
+    const _run: ()=>Promise<string> = async () => {
+      let orderSaveParams: API.User.OrderSaveParams = {
+        plan_id: planID,
+        cycle: planMethod,
+      }
+      if (typeof couponCode !== undefined) {
+        orderSaveParams = { ...orderSaveParams, coupon_code: couponCode }
+      }
+      const orderSaveResult = await orderSave(orderSaveParams)
+      if (orderSaveResult === undefined) {
+        return Promise.reject()
+      }
+      const orderDetailURL = `/order/${orderSaveResult.data}`
+      return Promise.resolve(orderDetailURL)
+    }
+
+    if (subState.planID !== planID) {
+      Modal.confirm({
+        title: intl.formatMessage({ id: 'plan.detail.operation.modal.title' }),
+        content: intl.formatMessage({ id: 'plan.detail.operation.modal.content' }),
+        onOk: async (): Promise<any> => {
+          _run().then((url:string)=> {
+            history.push(url)
+          },function() {
+            setDisabled(false)
+          })
+        },
+      })
+    } else {
+      _run().then((url:string)=> {
+        history.push(url)
+      }, function() {
         setDisabled(false)
-      },
-    })
+      })  
+    }
+    setDisabled(false)
   }
 
   return (
