@@ -48,7 +48,6 @@ export default (): subModel => {
     const quantumultXContent = { server_remote: [`${subscribeUrl},tag=${title}`] }
     const quantumultXContentJSON = JSON.stringify(quantumultXContent)
     const quantumultXUrl: string = `quantumult-x:///update-configuration?remote-resource=${quantumultXContentJSON.valueOf()}`
-    console.log(quantumultXUrl)
 
     return {
       clashUrl,
