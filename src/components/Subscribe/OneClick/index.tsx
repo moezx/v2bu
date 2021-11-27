@@ -63,7 +63,7 @@ const OneClick: FC<oneClickProps> = (props) => {
         <Menu.Item key="2">
           <a href={clashUrl}>
             <i className="fa fa-share mr-2" />
-            {intl.formatMessage({ id: 'subscribe.oneclick.export' }, { name: 'Clashx' })}
+            {intl.formatMessage({ id: 'subscribe.oneclick.export' }, { name: 'Clash' })}
           </a>
         </Menu.Item>
       </Menu>
