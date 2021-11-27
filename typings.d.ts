@@ -30,5 +30,6 @@ declare global {
         color: 'default' | 'black' | 'darkblue'
       }
     }
+    copy:(content:string)=>void 
   }
 }

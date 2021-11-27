@@ -1,11 +1,12 @@
 import type { FC } from 'react'
 import React, { useState } from 'react'
 import { knowledge } from '@/services'
-import { Drawer, Result, Button } from 'antd'
+import { Drawer, Result, Button, message } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import moment from 'moment'
 import { Link, useIntl, history, useModel } from 'umi'
 import MarkdownIt from 'markdown-it'
+import clipboardy from '@umijs/deps/reexported/clipboardy'
 
 const mdParser = new MarkdownIt({ html: true })
 
@@ -49,6 +50,12 @@ const KnowLedge: FC<KnowLedgeProps> = (props) => {
 
       showDrawer()
     })()
+  }
+  
+  window.copy = (content:string ) => {
+    clipboardy.write(content).then(() => {
+      message.success(intl.formatMessage({ id: 'common.message.copy_success' }))
+    })
   }
 
   return (
