@@ -1,7 +1,9 @@
 import type { FC } from 'react'
 import KnowLedge from '@/components/Knowledge'
 import { useEffect, useState } from 'react'
+import { Spin } from 'antd'
 import { knowledges } from '@/services'
+import { LoadingOutlined } from '@ant-design/icons'
 import { getLocale } from 'umi'
 
 const KnowledgePage: FC = () => {
@@ -27,10 +29,14 @@ const KnowledgePage: FC = () => {
   return (
     <>
       <div className="content content-full">
-        <KnowLedge
-          categories={userCategories}
-          knowledges={userKnowledges as API.User.KnowledgesResult}
-        />
+        {userKnowledges !== undefined ? (
+          <KnowLedge
+            categories={userCategories}
+            knowledges={userKnowledges as API.User.KnowledgesResult}
+          />
+        ) : (
+          <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
+        )}
       </div>
     </>
   )

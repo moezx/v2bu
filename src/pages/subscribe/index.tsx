@@ -6,7 +6,8 @@ import List from './_List'
 import { servers } from '@/services'
 import Top from './_Top'
 import moment from 'moment'
-import { Tag, Badge, Space } from 'antd'
+import { Tag, Badge, Space, Spin } from 'antd'
+import { LoadingOutlined } from '@ant-design/icons'
 import { useIntl } from 'umi'
 
 const SubscribePage: FC = () => {
@@ -84,6 +85,9 @@ const SubscribePage: FC = () => {
           userDataSource === undefined &&
           (initialState?.currentUser?.data.plan_id as number) > 0 &&
           renderRenewInfo()}
+        {initialized === false && (
+          <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
+        )}
       </div>
     </>
   )
