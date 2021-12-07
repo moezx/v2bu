@@ -31,12 +31,12 @@ const LayoutPage: FC<IRouteComponentProps> = (props) => {
   const { children, location } = props
   const darkMode = localStorage.getItem('dark-mode') === '1'
 
-  useDarkreader(darkMode, undefined, {
-    ignoreInlineStyle: ['path'],
-    invert: [],
-    ignoreImageAnalysis: [],
-    css: 'background-color: ${white} !important;',
-  })
+  // useDarkreader(darkMode, undefined, {
+  //   ignoreInlineStyle: ['path'],
+  //   invert: [],
+  //   ignoreImageAnalysis: [],
+  //   css: 'background-color: ${white} !important;',
+  // })
 
   const containerClassNames = classNames(
     'sidebar-o',
@@ -64,6 +64,13 @@ const LayoutPage: FC<IRouteComponentProps> = (props) => {
   if (isNoLaooutPath(location.pathname)) {
     return <>{children}</>
   }
+
+  useDarkreader(darkMode, undefined, {
+    ignoreInlineStyle: ['path'],
+    invert: [],
+    ignoreImageAnalysis: [],
+    css: 'background-color: ${white} !important;',
+  })
 
   const sideOpenHandler = () => {
     setSideOpen(true)
