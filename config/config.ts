@@ -8,7 +8,7 @@ console.log('isProduction:', isProduction)
 console.log('isStandalone:', isStandAlone)
 
 export default defineConfig({
-  publicPath: isProduction ? `${jsDeliverHost}${ isStandAlone ? 'standalone' : 'build' }-${gitVersion}/` : '/',
+  // publicPath: isProduction ? `${jsDeliverHost}${ isStandAlone ? 'standalone' : 'build' }-${gitVersion}/` : '/',
   hash: false,
   nodeModulesTransform: {
     type: 'none',
