@@ -10,6 +10,8 @@ import {
   isNoLaooutPath,
   isStandAlone,
   isProduction,
+  gitVersion,
+  jsDeliverHost
 } from '@/default'
 import { useState } from 'react'
 import Header from './Header'
@@ -52,9 +54,9 @@ const LayoutPage: FC<IRouteComponentProps> = (props) => {
 
   let themePath: string
   if (isStandAlone || isProduction === false) {
-    themePath = `./theme/${colorTheme}.css`
+    themePath = `${jsDeliverHost}standalone-${gitVersion}/theme/${colorTheme}.css`
   } else {
-    themePath = `/theme/v2board/assets/theme/${colorTheme}.css`
+    themePath = `${jsDeliverHost}build-${gitVersion}/theme/${colorTheme}.css`
   }
 
   useExternal(themePath, { async: false, type: 'css' })

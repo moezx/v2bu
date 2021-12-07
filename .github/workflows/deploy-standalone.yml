@@ -1,0 +1,38 @@
+name: Build and Deploy (Standalone)
+
+'on':
+  push:
+    branches: [master]
+
+jobs:
+  build-and-deploy-standalone:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+
+      - name: Prepare Node 🔧
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install and Build 🚧
+        run: yarn install && yarn build:standalone
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.7
+        with:
+          branch: standalone
+          folder: dist
+
+      - name: Set Variables 📋
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: Release 🎉
+        uses: softprops/action-gh-release@v1
+        with:
+          target_commitish: standalone
+          tag_name: standalone-${{steps.vars.outputs.sha_short}}
+          name: standalone-${{steps.vars.outputs.sha_short}}
+          body: https://github.com/moezx/v2bu/actions/runs/${{ github.run_id }}
