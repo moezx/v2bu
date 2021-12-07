@@ -2,10 +2,13 @@ import { defineConfig } from 'umi'
 import chainWebpack from './webpack'
 const isProduction = process.env.NODE_ENV === 'production'
 const isStandAlone = process.env.STANDALONE !== undefined
+const gitVersion = process.env.GIT_VERSION
+const jsDeliverHost = process.env.JS_DELIVER_HOST
 console.log('isProduction:', isProduction)
 console.log('isStandalone:', isStandAlone)
 
 export default defineConfig({
+  publicPath: isProduction ? `${jsDeliverHost}${ isStandAlone ? 'standalone' : 'build' }-${gitVersion}/` : '/',
   hash: false,
   nodeModulesTransform: {
     type: 'none',
@@ -58,5 +61,7 @@ export default defineConfig({
     'process.env.CURRENCY_LOCALE': process.env.CURRENCY_LOCALE ?? 'zh-CN',
     'process.env.CURRENCY_UNIT': process.env.CURRENCY_UNIT ?? 'CNY',
     'process.env.CURRENCY_MAX_DIGITS': 2,
+    'process.env.GIT_VERSION': process.env.GIT_VERSION,
+    'process.env.JS_DELIVER_HOST': process.env.JS_DELIVER_HOST,
   },
 })
