@@ -7,16 +7,16 @@ export interface FooterProps {
   name: string
   version?: string
   year?: string
+  gitVersion?: string
 }
 
 const Footer: FC<FooterProps> = (props) => {
-  const { name, version, year } = props
+  const { name, version, year, gitVersion } = props
   const { yearCopy } = useModel('useCommonModel')
   const renderContent = () => {
     return (
       <div className="col-sm-6 order-sm-1 text-center text-sm-left">
-        {name}
-        {version}©<span data-toggle="year-copy">{year || yearCopy().toString()}</span>
+        {name} {version} (build {gitVersion}) ©<span data-toggle="year-copy">{year || yearCopy().toString()}</span>
       </div>
     )
   }
@@ -26,7 +26,7 @@ const Footer: FC<FooterProps> = (props) => {
       <footer id="page-footer" className="bg-body-dark">
         <div className="content py-0">
           <div className="row font-size-sm">
-            <div className="col-sm-6 order-sm-2 mb-1 mb-sm-0 text-center text-sm-right">
+            {/* <div className="col-sm-6 order-sm-2 mb-1 mb-sm-0 text-center text-sm-right">
               <Space>
                 <i className="fa fa-heart text-danger" />
                 <a
@@ -37,7 +37,7 @@ const Footer: FC<FooterProps> = (props) => {
                   xflash-panda
                 </a>
               </Space>
-            </div>
+            </div> */}
             {renderContent()}
           </div>
         </div>
