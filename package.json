@@ -3,8 +3,8 @@
   "scripts": {
     "start": "cross-env UMI_ENV=DEV umi dev",
     "start:standalone": "cross-env UMI_ENV=DEV STANDALONE=1 umi dev",
-    "build": "cross-env GIT_VERSION=$(git rev-parse --short HEAD) JS_DELIVER_HOST=https://cdn.jsdelivr.net/gh/moezx/v2bu@ umi build ",
-    "build:standalone": "cross-env STANDALONE=1 GIT_VERSION=$(git rev-parse --short HEAD) JS_DELIVER_HOST=https://cdn.jsdelivr.net/gh/moezx/v2bu@ umi build",
+    "build": "cross-env GIT_VERSION=$(git rev-parse --short HEAD) JS_DELIVER_HOST=https://jsdelivr.2heng.xin/gh/moezx/v2bu@ umi build ",
+    "build:standalone": "cross-env STANDALONE=1 GIT_VERSION=$(git rev-parse --short HEAD) JS_DELIVER_HOST=https://jsdelivr.2heng.xin/gh/moezx/v2bu@ umi build",
     "postbuild:standalone": "cpx env.example.js dist && rimraf dist/assets",
     "postbuild": "rimraf dist/assets",
     "build:analyze": "cross-env ANALYZE=1 umi build",
