@@ -60,11 +60,25 @@ const OneClick: FC<oneClickProps> = (props) => {
             {intl.formatMessage({ id: 'subscribe.oneclick.view_qrcode' })}
           </Link>
         </Menu.Item>
-        <Menu.Item key="2">
+        {/* <Menu.Item key="2">
           <a href={clashUrl}>
             <i className="fa fa-share mr-2" />
             {intl.formatMessage({ id: 'subscribe.oneclick.export' }, { name: 'Clash' })}
           </a>
+        </Menu.Item> */}
+        <Menu.Item key="2">
+          <Link
+            to=""
+            onClick={(e) => {
+              e.preventDefault()
+              clipboardy.write(clashUrl as string).then(() => {
+                message.success(intl.formatMessage({ id: 'common.message.copy_success' }))
+              })
+            }}
+          >
+            <i className="fa fa-share mr-2" />
+            {intl.formatMessage({ id: 'subscribe.oneclick.export' }, { name: 'Clash' })}
+          </Link>
         </Menu.Item>
       </Menu>
     </>
@@ -142,11 +156,25 @@ const OneClick: FC<oneClickProps> = (props) => {
             {intl.formatMessage({ id: 'subscribe.oneclick.view_qrcode' })}
           </Link>
         </Menu.Item>
-        <Menu.Item key="2">
+        {/* <Menu.Item key="2">
           <a href={clashUrl}>
             <i className="fa fa-share mr-2" />
             {intl.formatMessage({ id: 'subscribe.oneclick.export' }, { name: 'Clash For Android' })}
           </a>
+        </Menu.Item> */}
+        <Menu.Item key="2">
+          <Link
+            to=""
+            onClick={(e) => {
+              e.preventDefault()
+              clipboardy.write(clashUrl as string).then(() => {
+                message.success(intl.formatMessage({ id: 'common.message.copy_success' }))
+              })
+            }}
+          >
+            <i className="fa fa-share mr-2" />
+            {intl.formatMessage({ id: 'subscribe.oneclick.export' }, { name: 'Clash' })}
+          </Link>
         </Menu.Item>
         <Menu.Item key="3">
           <a href={surgeUrl}>

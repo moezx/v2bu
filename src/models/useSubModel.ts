@@ -41,7 +41,8 @@ export default (): subModel => {
   const generateUrls = (
     subscribeUrl: string,
   ): Pick<subscribeState, 'clashUrl' | 'surgeUrl' | 'shadowrocketUrl' | 'quantumultXUrl'> => {
-    const clashUrl: string = `clash://install-config?url=${subscribeUrl}&name=${title}`
+    // const clashUrl: string = `clash://install-config?url=${subscribeUrl}&name=${title}`
+    const clashUrl: string = `${subscribeUrl}&name=${title}&flag=clash`
     const surgeUrl: string = `surge:///install-config?url=${subscribeUrl}&name=${title}`
     const shaowRocketContent: string = Buffer.from(subscribeUrl).toString('base64')
     const shadowrocketUrl: string = `shadowrocket://add/sub://${shaowRocketContent}?remark=${title}`
